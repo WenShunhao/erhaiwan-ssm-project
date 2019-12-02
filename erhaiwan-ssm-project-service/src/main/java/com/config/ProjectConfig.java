@@ -20,7 +20,6 @@ import java.util.Properties;
 @PropertySource(value = "classpath:db.properties",encoding = "UTF-8")//读取外部文件
 @MapperScan("com.dao")
 @ComponentScan({"com.service"})//扫描业务类
-//@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement()
 public class ProjectConfig {
     @Value("${usernames}")

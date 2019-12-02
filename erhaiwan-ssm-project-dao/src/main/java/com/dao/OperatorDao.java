@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+
 public interface OperatorDao {
 //    管理员登录验证
     OperatorInfo adminLogin(@Param("oAccount")String oAccount,@Param("oPassword") String oPassword);
