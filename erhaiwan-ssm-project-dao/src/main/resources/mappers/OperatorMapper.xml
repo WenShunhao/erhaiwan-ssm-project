@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OperatorDao">
+    <select id="adminLogin" resultType="com.entity.OperatorInfo">
+        select o_id, o_account, o_password, o_type, e_id from operatorinfo where o_account = #{oAccount} and o_Password= #{oPassword}
+    </select>
+
+    <select id="getAllInfo" resultType="com.entity.OperatorInfo">
+        select o_id, o_account, o_password, o_type, e_id from operatorinfo order by e_id
+    </select>
+
+</mapper>
