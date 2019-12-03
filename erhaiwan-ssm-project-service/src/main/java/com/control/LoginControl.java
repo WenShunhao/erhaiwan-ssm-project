@@ -6,10 +6,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginControl {
+
     @RequestMapping("/login")
     public ModelAndView indexlogin(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("adminLogin");
         return mav;
     }
+
 }

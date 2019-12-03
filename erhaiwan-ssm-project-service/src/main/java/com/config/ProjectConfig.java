@@ -12,6 +12,11 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -19,9 +24,10 @@ import java.util.Properties;
 @Configuration
 @PropertySource(value = "classpath:db.properties",encoding = "UTF-8")//读取外部文件
 @MapperScan("com.dao")
-@ComponentScan({"com.service"})//扫描业务类
+@ComponentScan({"com.service","com.control"})//扫描业务类
 @EnableTransactionManagement()
-public class ProjectConfig {
+@EnableWebMvc
+public class ProjectConfig  implements WebMvcConfigurer {
     @Value("${usernames}")
     private String username;
     @Value("${password}")
@@ -90,5 +96,18 @@ public class ProjectConfig {
         //日志
         sqlSessionFactoryBean.setConfiguration(configuration());
         return  sqlSessionFactoryBean.getObject();
+    }
+    @Bean
+    public InternalResourceViewResolver internalResourceViewResolver (){
+        InternalResourceViewResolver resourceViewResolver = new InternalResourceViewResolver();
+        resourceViewResolver.setSuffix(".jsp");
+        resourceViewResolver.setPrefix("/WEB-INF/");
+        return  resourceViewResolver;
+    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        ResourceHandlerRegistration registration
+                = registry.addResourceHandler("/static/**");
+        registration.addResourceLocations("classpath:/static/");
     }
 }
