@@ -83,7 +83,7 @@ public class ProjectConfig {
         sqlSessionFactoryBean.setDataSource(dataSource());
         //获取mapper配置文件
         PathMatchingResourcePatternResolver patternResolver = new PathMatchingResourcePatternResolver();
-        Resource[] resources = patternResolver.getResources("classpath*:*Mapper.xml");
+        Resource[] resources = patternResolver.getResources("classpath*:mappers/*Mapper.xml");
         sqlSessionFactoryBean.setMapperLocations(resources);
         //分页插件
         sqlSessionFactoryBean.setPlugins(pageInterceptor());
