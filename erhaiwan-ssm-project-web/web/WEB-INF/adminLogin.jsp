@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>洱海湾停车场🚩</title>
+    <title>系统管理员登录🚩</title>
     <link href="/static/css/adminlogin.css" rel="stylesheet" type="text/css">
     <script src="/static/js/jquery-3.31.min.js"></script>
     <style>
@@ -30,14 +30,14 @@
     </style>
 </head>
 <body>
-<form  action="/login" method="post">
+<form  action="/login" method="post" >
     <h2 align="center">洱海湾停车场管理系统</h2>
     <div class="ib">
         <input  id="oAccount" name="oAccount" value=""/>
         <span data-placeholder="Please Enter Administrator ID"></span>
     </div>
     <div class="ib">
-        <input  id="oPassword" name="oPassword" type="password" value=""/>
+        <input  id="oPassword" name="oPassword" type="password" value="123456"/>
         <span data-placeholder="Please Enter Your Password"></span>
     </div>
     <!--这里加一个隐藏域-->

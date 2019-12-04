@@ -9,6 +9,7 @@
 #daohang{
     width: 200px;
     float: left;
+    z-index: 1;
 }
 
 #Content_right{
@@ -21,10 +22,13 @@
 #topdaohang{
     width: 1160px;
     height: 50px;
+    z-index: 2;
+    position:fixed;
 }
 
 #topcontext{
     margin-left: 800px;
+
 }
 
 
