@@ -39,6 +39,7 @@ private OperatorDao dao;
             mv.addObject("error","账号或密码错误，请检查！");
         } else {
             mv.setViewName("adminIndex");
+            mv.addObject("username",oAccount);
 
         }
         return mv;

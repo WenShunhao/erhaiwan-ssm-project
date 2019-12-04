@@ -4038,8 +4038,10 @@ body .layui-table-tips .layui-layer-content {
 	bottom: 0;
 	left: 0;
 	overflow-x: hidden;
-	z-index: 999
+	z-index: 999;
+	overflow-y: hidden;
 }
+
 
 .layui-bg-blue .layui-nav-bar,
 .layui-bg-blue .layui-nav-itemed:after,

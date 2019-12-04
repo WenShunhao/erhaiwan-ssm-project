@@ -1,0 +1,30 @@
+#All {
+    width: 1365px;
+    background-color: white;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
+#daohang{
+    width: 200px;
+    float: left;
+}
+
+#Content_right{
+    width: 1160px;
+    height: 850px;
+    float: right;
+
+}
+
+#topdaohang{
+    width: 1160px;
+    height: 50px;
+}
+
+#topcontext{
+    margin-left: 800px;
+}
+
+
