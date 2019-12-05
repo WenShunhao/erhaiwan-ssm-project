@@ -2,7 +2,6 @@ package com.control;
 
 import com.dao.OperatorDao;
 import com.entity.OperatorInfo;
-import com.service.OperatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,16 +26,22 @@ private OperatorDao dao;
     }
 
     @RequestMapping("/login")
-    public ModelAndView login(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView login(@Valid OperatorInfo operatorInfo,BindingResult bindingResult, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         req.setCharacterEncoding("UTF-8");
         ModelAndView mv = new ModelAndView();
         String oAccount = req.getParameter("oAccount");
         String oPassword = req.getParameter("oPassword");
-        OperatorInfo operatorInfo = dao.adminLogin(oAccount, oPassword);
+         operatorInfo = dao.adminLogin(oAccount, oPassword);
+        if (bindingResult.hasErrors()) {
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                mv.addObject(error.getField() + "Error", error.getDefaultMessage());
+            }
+        }
         if (operatorInfo == null)
         {
             mv.setViewName("adminLogin");
-            mv.addObject("error","账号或密码错误，请检查！");
+            mv.addObject("error","*账号或密码错误，请检查！");
         } else {
             mv.setViewName("adminIndex");
             mv.addObject("username",oAccount);

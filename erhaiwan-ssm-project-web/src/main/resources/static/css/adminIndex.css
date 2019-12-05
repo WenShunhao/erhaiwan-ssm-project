@@ -5,6 +5,10 @@
     margin-right: -10px;
     margin-top: -10px;
 }
+#projecttitle{
+    font-family: "楷体";
+    font-size: 20px;
+}
 
 #daohang{
     width: 200px;

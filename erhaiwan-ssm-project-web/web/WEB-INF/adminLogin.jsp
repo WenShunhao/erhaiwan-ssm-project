@@ -11,6 +11,7 @@
     <title>系统管理员登录🚩</title>
     <link href="/static/css/adminlogin.css" rel="stylesheet" type="text/css">
     <script src="/static/js/jquery-3.31.min.js"></script>
+    <script src="/static/layui/layui.js" charset="utf-8"></script>
     <style>
         #loginbtn{
             display: block;
@@ -27,26 +28,39 @@
         #loginbtn:hover {
             background-position: right;
         }
+        canvas#live2dcanvas {
+            border: 0 !important;
+            left: 15px;
+        }
+
     </style>
 </head>
 <body>
 <form  action="/login" method="post" >
     <h2 align="center">洱海湾停车场管理系统</h2>
     <div class="ib">
-        <input  id="oAccount" name="oAccount" value=""/>
+        <input  id="oAccount" name="oAccount" value="" onclick="dispare()"/>
         <span data-placeholder="Please Enter Administrator ID"></span>
     </div>
     <div class="ib">
-        <input  id="oPassword" name="oPassword" type="password" value="123456"/>
+        <input  id="oPassword" name="oPassword" type="password" value="123456" onclick="dispare()"/>
         <span data-placeholder="Please Enter Your Password"></span>
     </div>
     <!--这里加一个隐藏域-->
     <input type="hidden" name="back_url" value="">
 
     <input type="submit" value="登陆" id="loginbtn">
-
+    <div id="tishi">
+        <span style="color: red">${error}<br>${oAccountError}<br>${oPasswordError}</span>
+    </div>
 
 </form>
+<script>
+    function dispare() {
+        var tishi =document.getElementById("tishi");
+        tishi.style.display="none";
+    }
+</script>
 
 <script>
     window.onload = function (ev) {
@@ -62,6 +76,11 @@
             }
         });
     };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+    L2Dwidget.init();
 </script>
 </body>
 </html>

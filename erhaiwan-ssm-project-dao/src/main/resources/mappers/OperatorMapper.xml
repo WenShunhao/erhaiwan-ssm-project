@@ -11,4 +11,8 @@
         select o_id, o_account, o_password, o_type, e_id from operatorinfo order by e_id
     </select>
 
+    <select id="selectByloginname" resultType="String">
+         select oAccount from  user where oAccount=#{oAccount}
+    </select>
+
 </mapper>

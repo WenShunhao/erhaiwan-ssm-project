@@ -19,6 +19,11 @@ public class OperatorService {
     public OperatorInfo Login (String oAccount, String oPassword){
        return operatorDao.adminLogin(oAccount,oPassword);
     }
+    @Transactional
+    public String selectByloginname(String oAccount){
+      return operatorDao.selectByloginname(oAccount);
+
+     }
     public List<OperatorInfo> operatorInfo2(int pageNum, int pageSize){
       return    operatorDao.getAllInfo(pageNum,pageSize);
     }

@@ -22,7 +22,7 @@
 <div id="all">
     <div id="daohang">
     <ul class="layui-nav layui-nav-tree layui-nav-side "  lay-filter="test" style="margin-right: 10px;">
-        <li class="layui-nav-item">&nbsp;&nbsp;</li>
+        <li class="layui-nav-item"><span id="projecttitle">洱海湾停车场管理系统</span></li>
         <li class="layui-nav-item ">
             <a href="javascript:;"><i class="layui-icon layui-icon-username" style="font-size: 30px; color: white;"></i>会员管理中心</a>
             <dl class="layui-nav-child">
