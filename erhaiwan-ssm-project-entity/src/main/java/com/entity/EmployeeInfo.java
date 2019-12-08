@@ -8,6 +8,7 @@ public class EmployeeInfo {
     private Integer eId;
     private String eName;
     private Date eBirthday;
+    private String ePhone;
     private String eGender;
     private String eIdcard;
     private Double eSalary;
@@ -16,5 +17,7 @@ public class EmployeeInfo {
     private String eCondition;
     private String eAddress;
     private String eRemark;
+
+
 
 }

@@ -1,0 +1,78 @@
+			body {
+			
+				font-size: 12px;
+				font-family: "华文中宋";
+				text-align:center;
+			}
+
+
+			td {
+				border: 0.4px solid darkgray;
+				padding: 10px 10px;
+			}
+			#All{
+			width: 1320px;
+			margin-left: -8px;
+			margin-top: -8px;
+			}
+
+			#query{
+				font-size: 15px;
+				font-family: "楷体";
+				text-align: left;
+				padding-top:15px;
+				height: 38px;
+				background-color: white;
+				border-bottom: 1px solid darkgray;
+			}
+			#vip_id{
+				font-family: "楷体";
+				width: 170px;
+				height: 20px;
+				border-radius: 5px; 	/*圆角*/
+			}
+			#queryBtn{
+				width: 50px; /* 宽度 */
+				height: 25px; /* 高度 */
+				border-width: 0px; /* 边框宽度 */
+				border-radius: 3px; /* 边框半径 */
+				background: blue; /* 背景颜色 */
+				outline: none; /* 不显示轮廓线 */
+			}
+			#queryBtn:hover { /* 鼠标移入按钮范围时改变颜色 */
+				background: #1E90FF;
+			}
+			#queryBtn:hover{
+				background-color: #1E90FF;
+			}
+			#lstVip{
+				margin-top: 15px;
+			}
+			#tblMain{
+				margin-left: 20px;
+				width: 1300px;
+
+			}
+			#shuju{
+				overflow-y: auto;
+				overflow-x: auto;
+			}
+			#addVip{
+				font-family: "楷体";
+				font-size: 18px;
+				font-weight: 900;
+				margin-left: -1090px;
+				
+			}
+			
+			#addVip :link{
+				
+				text-decoration: none;
+			}
+				table {
+				margin: 8px auto;
+				width: 95%;
+				border: 0.4px solid darkgray;
+				
+			}
+		

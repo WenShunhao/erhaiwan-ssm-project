@@ -53,6 +53,7 @@ public class ProjectConfig  implements WebMvcConfigurer {
      * tm
      *
      * **/
+//    事务管理
     @Bean
     public DataSourceTransactionManager transactionManager(){
         DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
@@ -98,6 +99,7 @@ public class ProjectConfig  implements WebMvcConfigurer {
         sqlSessionFactoryBean.setConfiguration(configuration());
         return  sqlSessionFactoryBean.getObject();
     }
+//    视图解析
     @Bean
     public InternalResourceViewResolver internalResourceViewResolver (){
         InternalResourceViewResolver resourceViewResolver = new InternalResourceViewResolver();
@@ -105,6 +107,7 @@ public class ProjectConfig  implements WebMvcConfigurer {
         resourceViewResolver.setPrefix("/WEB-INF/");
         return  resourceViewResolver;
     }
+//    静态文件
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         ResourceHandlerRegistration registration

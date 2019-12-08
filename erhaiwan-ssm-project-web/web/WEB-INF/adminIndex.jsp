@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>管理员操作系统</title>
@@ -13,6 +14,7 @@
     <link href="/static/layui/css/layui.css" rel="stylesheet" type="text/css">
     <link href="/static/css/adminIndex.css" rel="stylesheet" type="text/css">
     <script src="/static/layui/layui.js" charset="utf-8"></script>
+    <script src="/static/js/zui.js"></script>
 
     <style>
         body{overflow-y: scroll;}
@@ -35,8 +37,8 @@
         <li class="layui-nav-item ">
             <a href="javascript:;"><i class="layui-icon layui-icon-group" style="font-size: 25px; color: white;"></i>员工管理中心</a>
             <dl class="layui-nav-child">
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 25px; color: white;"></i>详细信息查询</a></dd>
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 25px; color: white;"></i>新员工入职</a></dd>
+                <dd><a href="/emplist" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 25px; color: white;"></i>详细信息查询</a></dd>
+                <dd><a href="/test" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 25px; color: white;"></i>新员工入职</a></dd>
                 <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-edit" style="font-size: 25px; color: white;"></i>修改信息记录</a></dd>
                 <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 25px; color: white;"></i>离职员工信息</a></dd>
             </dl>
@@ -70,16 +72,15 @@
                     <li class="layui-nav-item" lay-unselect="" >
                         <a href="javascript:;"><img src="/static/img/1.png" class="layui-nav-img">${username}</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="#">安全管理</a></dd>
-                            <dd><a href="#" onclick="del()">注销登录</a></dd>
-
+                            <dd><a href="#" target="iframe_a">安全管理</a></dd>
+                            <dd><a  id="zhuxiao">注销登录</a></dd>
                         </dl>
                     </li>
                 </div>
                 </ul>
             </div>
-            <div>
-            <iframe  src="" name="iframe_a" width="1160" height="1000"  scrolling="no"  >
+            <div id="kuangjia">
+            <iframe  src="/emplist" name="iframe_a" width="1160" height="800"  scrolling="no" >
 
             </iframe>
             </div>
@@ -91,24 +92,6 @@
 
 
 </body>
-<script>
-        // layer.msg('登录成功', {
-        //     icon: 1,
-        //     time: 1000 //1秒关闭
-        // });
-
-        function del() {
-            if (confirm("您确定要注销登录吗？")==true){
-                location.href='/'
-            }
-            else {
-                return false;
-            }
-        }
-</script>
-
-
-
 <script>
     layui.use('element', function(){
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块

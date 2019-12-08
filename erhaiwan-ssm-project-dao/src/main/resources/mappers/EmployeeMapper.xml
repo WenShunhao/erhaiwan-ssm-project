@@ -3,5 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.EmployeeDao">
-
+    <select id="getEmpAllInfo" resultType="com.entity.EmployeeInfo">
+        select e_id, e_name, e_birthday,e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark from employeeinfo order by e_id
+    </select>
 </mapper>

@@ -25,7 +25,7 @@ private OperatorDao dao;
         return mav;
     }
 
-    @RequestMapping("/login")
+    @RequestMapping("/lndex")
     public ModelAndView login(@Valid OperatorInfo operatorInfo,BindingResult bindingResult, HttpServletRequest req, HttpServletResponse resp) throws Exception {
         req.setCharacterEncoding("UTF-8");
         ModelAndView mv = new ModelAndView();
@@ -50,4 +50,5 @@ private OperatorDao dao;
         return mv;
 
     }
+
 }

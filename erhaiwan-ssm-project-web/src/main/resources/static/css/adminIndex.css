@@ -28,11 +28,17 @@
     height: 50px;
     z-index: 2;
     position:fixed;
+    float: left;
 }
 
 #topcontext{
     margin-left: 800px;
 
+}
+
+#kuangjia{
+    margin-top: 60px;
+    float: left;
 }
 
 

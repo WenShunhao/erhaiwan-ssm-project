@@ -98,7 +98,8 @@ li {
 
 table {
 	border-collapse: collapse;
-	border-spacing: 0
+	border-spacing: 0;
+
 }
 
 h4,
@@ -2250,7 +2251,7 @@ hr {
 
 .layui-input-block {
 	margin-left: 110px;
-	min-height: 36px
+	min-height: 36px;
 }
 
 .layui-input-inline {
@@ -3059,6 +3060,7 @@ hr {
 	width: 100%;
 	background-color: #fff;
 	color: #666
+
 }
 
 .layui-table tr {
@@ -3158,12 +3160,13 @@ hr {
 
 .layui-table-box {
 	position: relative;
-	overflow: hidden
+	overflow: hidden;
 }
 
 .layui-table-view .layui-table {
 	position: relative;
 	width: auto;
+	overflow-x:auto;
 	margin: 0
 }
 

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>系统管理员登录🚩</title>
@@ -36,7 +37,7 @@
     </style>
 </head>
 <body>
-<form  action="/login" method="post" >
+<form  action="/lndex" method="post" >
     <h2 align="center">洱海湾停车场管理系统</h2>
     <div class="ib">
         <input  id="oAccount" name="oAccount" value="" onclick="dispare()"/>
