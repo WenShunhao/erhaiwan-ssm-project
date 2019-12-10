@@ -40,7 +40,7 @@
                 <dd><a href="/emplist" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 25px; color: white;"></i>详细信息查询</a></dd>
                 <dd><a href="/test" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 25px; color: white;"></i>新员工入职</a></dd>
                 <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-edit" style="font-size: 25px; color: white;"></i>修改信息记录</a></dd>
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 25px; color: white;"></i>离职员工信息</a></dd>
+                <dd><a href="/test2" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 25px; color: white;"></i>离职员工信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item ">
@@ -72,8 +72,8 @@
                     <li class="layui-nav-item" lay-unselect="" >
                         <a href="javascript:;"><img src="/static/img/1.png" class="layui-nav-img">${username}</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="#" target="iframe_a">安全管理</a></dd>
-                            <dd><a  id="zhuxiao">注销登录</a></dd>
+                            <dd><a  target="iframe_a">安全管理</a></dd>
+                            <dd><a href="/" id="zhuxiao">注销登录</a></dd>
                         </dl>
                     </li>
                 </div>

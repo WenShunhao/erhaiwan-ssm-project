@@ -45,5 +45,11 @@ public class EmployeeControl {
         mav.setViewName("emp/empadd");
         return mav;
     }
+    @RequestMapping("/test2")
+    public ModelAndView index2(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("emp/empbackup");
+        return mav;
+    }
 
 }

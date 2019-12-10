@@ -9,22 +9,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>员工信息</title>
+    <title>离职员工备份信息</title>
     <script src="/static/js/jquery-3.3.1.min.js"></script>
     <link href="/static/layui/css/layui.css" rel="stylesheet" type="text/css">
     <script src="/static/layui/layui.js" charset="utf-8"></script>
     <script src="/static/js/bootstrap.js"></script>
     <link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet"/>
     <style>
+        #all{
+        margin-top: -10px;
+        margin-left: 20px;
+        }
         #tblMain{
-            width: 2000px;
+            width: 1350px;
+            text-align: center;
             overflow-y: auto;
             overflow-x: auto;
+
         }
-        /*.fenye{*/
-        /*    width: 1400px;*/
-        /*    text-align:center;*/
-        /*}*/
+        .fenye{
+            text-align:center;
+        }
 
     </style>
 </head>
@@ -33,65 +38,66 @@
 <!--总体框-->
 <div id="All" >
     <!--按条件搜索员工-->
-    <div style="margin-top: 18px;margin-left: 15px">
-        <form action="/empselect" method="post">
-
-            <div style="width: 1300px;text-align: center">
-
-            <label >姓名:</label><input type="text"  placeholder="请输入你要查询的姓名" style="width: 180px;height: 38px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <label>入职时间:</label><input type="date" name="date1"  style="width: 135px;height:38px;"/>
-            <i class="layui-icon layui-icon-date" style="font-size: 25px; color: skyblue;padding-top: 6px"></i>
-             <input type="date" name="date2"  style="width: 135px;height:38px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select style="width: 135px;height:38px;">
-                        <option value="">--请选择部门--</option>
-                        <option value="总裁">总裁</option>
-                        <option value="技术部">技术部</option>
-                        <option value="保安部">保安部</option>
-                    </select>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="layui-btn" lay-submit lay-filter="formDemo">点击查询</button>
+    <div style="margin-top: 18px;margin-left: 15px;text-align: center">
+        <form action="/empselect" method="post" >
+        <div class="form-group">&nbsp;&nbsp;&nbsp;&nbsp;
+            <label >Name:</label> <input type="text"  placeholder="请输入你要查询的姓名" style="width: 180px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
+        <br>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">点击查询</button>
+        <br>
         </form>
     </div>
     <hr>
 
-    <div id="lstVip" class="table-responsive" style="text-align: center">
+    <div id="lstVip" class="table-responsive" >
         <table id="tblMain"  class="layui-table"  lay-skin="line">
-            <tr>
+            <tr >
                 <th>编号</th>
                 <th>姓名</th>
-                <th>出生日期</th>
                 <th>联系方式</th>
                 <th>性别</th>
                 <th>身份证</th>
-                <th>工资</th>
                 <th>入职日期</th>
-                <th>所属部门</th>
+                <th>离职日期</th>
+                <th>原所属部门</th>
                 <th>状态</th>
                 <th>家庭地址</th>
                 <th>备注</th>
                 <th>操作</th>
-
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>测试</td>
+                <td>123049618318</td>
+                <td>男</td>
+                <td>44444444444444</td>
+                <td>2000-10-22</td>
+                <td>2019-1-4</td>
+                <td>总裁</td>
+                <td>离职</td>
+                <td>广东河源</td>
+                <td>离职原因：个人情况</td>
+                <td><input type="button"  value="删除" onclick="" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" />
+                <td><input type="button"  value="还原" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" />
             </tr>
 
-            <c:forEach items="${pageInfo.list}" var="emp">
-                <tr>
-                    <td>${emp.EId}</td>
-                    <td>${emp.EName}</td>
-                    <td>${emp.EBirthday}</td>
-                    <td>${emp.EPhone}</td>
-                    <td>${emp.EGender}</td>
-                    <td>${emp.EIdcard}</td>
-                    <td>${emp.ESalary}</td>
-                    <td>${emp.EHiredate}</td>
-                    <td>${emp.EDept}</td>
-                    <td>${emp.ECondition}</td>
-                    <td>${emp.EAddress}</td>
-                    <td>${emp.ERemark}</td>
-                    <td><input type="button"  value="离职" onclick="" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" />
-                        <input type="button"  value="修改" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" />
-                </tr>
-            </c:forEach>
+<%--            <c:forEach items="${pageInfo.list}" var="emp">--%>
+<%--                <tr>--%>
+<%--                    <td>${emp.EId}</td>--%>
+<%--                    <td>${emp.EName}</td>--%>
+<%--                    <td>${emp.EPhone}</td>--%>
+<%--                    <td>${emp.EGender}</td>--%>
+<%--                    <td>${emp.EIdcard}</td>--%>
+<%--                    <td>${emp.EHiredate}</td>--%>
+<%--                    <td>${emp.ELeavedate}</td>--%>
+<%--                    <td>${emp.EDept}</td>--%>
+<%--                    <td>${emp.ECondition}</td>--%>
+<%--                    <td>${emp.EAddress}</td>--%>
+<%--                    <td>${emp.ERemark}</td>--%>
+<%--                    <td><input type="button"  value="删除" onclick="" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" /><td><input type="button"  value="还原" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" />--%>
+<%--                </tr>--%>
+<%--            </c:forEach>--%>
 
         </table>
     <div class="fenye">
@@ -111,35 +117,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 <script>
     function del(EId) {
@@ -153,10 +130,6 @@
             alert("删除失败！！！");
         })
     }
-    layui.use(['form'], function(){
-        var form = layui.form
-
-    });
 </script>
 
 </html>

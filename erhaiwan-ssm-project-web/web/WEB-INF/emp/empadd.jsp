@@ -10,15 +10,24 @@
 <head>
     <title>新员工入职</title>
     <link href="/static/layui/css/layui.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/empadd.css" rel="stylesheet" type="text/css">
     <script src="/static/layui/layui.js" charset="utf-8"></script>
+    <style>
+        .kuangdaxiao{
+            width: 500px;
+
+        }
+        .tishi{
+            font-family: 华文中宋;
+            font-size: 17px;
+            color:red;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
 <div id="all">
-<form method="post" id="formtb" class="layui-form" action="">
+<form method="post"  class="layui-form" action="">
     <div class="layui-form-item" >
-
-
 <%--        <!--姓名-->--%>
         <label class="layui-form-label"><i class="layui-icon layui-icon-username" style="font-size: 30px; color: skyblue;"></i></label>
     <div class="layui-input-block kuangdaxiao" >
@@ -28,7 +37,7 @@
 <%--        <!--出生日期-->--%>
         <label class="layui-form-label" style="margin-top: -2px;"><i class="layui-icon layui-icon-date" style="font-size: 30px; color: skyblue;"></i></label>
         <div class="layui-input-block" >
-        <input type="date" name="eBirthday"  style="width: 200px;float: left" class="layui-input" /><span style="font-family: 华文中宋;font-size: 12px;color:red;padding-top: 10px; margin-left: 20px" >出生日期</span>
+        <input type="date" name="eBirthday"  style="width: 200px;float: left" class="layui-input" /><span class="tishi">出生日期</span>
         </div>
     <br>
 <%--        <!--手机号-->--%>
@@ -61,7 +70,7 @@
             <%--        <!--入职日期-->--%>
             <label class="layui-form-label" style="margin-top: -2px;"><i class="layui-icon layui-icon-date" style="font-size: 30px; color: skyblue;"></i></label>
             <div class="layui-input-block" >
-                <input type="date" name="eHiredate"  style="width: 200px;float: left" class="layui-input"/><span style="font-family: 华文中宋;font-size:12px;color:red;padding-top: 10px; margin-left: 20px">入职日期</span>
+                <input type="date" name="eHiredate"  style="width: 200px;float: left" class="layui-input"/><span class="tishi">入职日期</span>
             </div>
 <%--      <!--所属部门-->--%>
     <br>
@@ -78,7 +87,6 @@
 
         <br>
 <%--状态--%>
-
                 <label class="layui-form-label"><i class="layui-icon layui-icon-note" style="font-size: 30px; color: skyblue;"></i></label>
     <div class="layui-input-block kuangdaxiao" >
                     <select name="eDept" lay-verify="required" class="layui-form-select">
@@ -110,7 +118,7 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit  lay-filter="formDemo">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button type="reset" class="layui-btn layui-btn-primary" style="width: 90px;">重置</button>
         </div>
     </div>
 
