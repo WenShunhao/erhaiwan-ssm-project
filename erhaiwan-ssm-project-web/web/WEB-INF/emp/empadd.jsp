@@ -14,7 +14,9 @@
     <style>
         .kuangdaxiao{
             width: 500px;
-
+        }
+        #all{
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -43,10 +45,6 @@
         <br>
 <%--        性别--%>
             <label class="layui-form-label"><i class="layui-icon layui-icon-male" style="font-size: 30px; color: skyblue;"></i></label>
-<%--            <div class="layui-input-block">--%>
-<%--             <input type="radio" name="eGender" value="男" title="男" checked />--%>
-<%--             <input type="radio" name="eGender" value="女"  title="女"/>--%>
-<%--            </div>--%>
             <div class="layui-input-block kuangdaxiao" >
              <select name="eGender" id="eGender" lay-verify="required" class="layui-form-select">
                  <option value=""></option>

@@ -112,9 +112,10 @@
             </c:forEach>
 
         </table>
-        <br>
+
     <div class="fenye">
         <ul class="pagination" >
+            <br>
             <li> <a href="/emplist?pageNum=1&pageSize=8" ><span id="sy">首页</span></a></li>
             <li><a href="/emplist?pageNum=${pageInfo.prePage}&pageSize=8">上一页</a></li>
             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
