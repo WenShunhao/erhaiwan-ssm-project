@@ -30,6 +30,6 @@
 <!--    添加员工信息-->
     <insert id="addEmpInfo" parameterType="com.entity.EmployeeInfo">
         insert into employeeinfo(e_name, e_birthday, e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark)
-        values (#{eName},#{eBirthday},#{ePhone},#{eGender},#{eIdcard},#{eSalary},#{eHiredate},#{eDept},#{eAddress},#{eRemark})
+        values (#{eName},#{eBirthday},#{ePhone},#{eGender},#{eIdcard},#{eSalary},#{eHiredate},#{eDept},#{eCondition},#{eAddress},#{eRemark})
     </insert>
 </mapper>

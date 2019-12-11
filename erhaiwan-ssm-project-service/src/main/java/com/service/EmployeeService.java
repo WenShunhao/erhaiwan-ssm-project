@@ -26,4 +26,8 @@ public class EmployeeService {
         dao.delInfo(eId);
         dao.addBackupInfo(info);
     }
+    @Transactional
+    public void empadd(EmployeeInfo employeeInfo){
+        dao.addEmpInfo(employeeInfo);
+    }
 }

@@ -126,6 +126,7 @@
             type:"GET"
         }).done(function () {
             alert("删除成功！！！");
+
         }).fail(function () {
             alert("删除失败！！！");
         })

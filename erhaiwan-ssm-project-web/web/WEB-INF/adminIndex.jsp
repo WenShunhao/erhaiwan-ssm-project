@@ -38,9 +38,9 @@
             <a href="javascript:;"><i class="layui-icon layui-icon-group" style="font-size: 25px; color: white;"></i>员工管理中心</a>
             <dl class="layui-nav-child">
                 <dd><a href="/emplist" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 25px; color: white;"></i>详细信息查询</a></dd>
-                <dd><a href="/test" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 25px; color: white;"></i>新员工入职</a></dd>
+                <dd><a href="/addui" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 25px; color: white;"></i>新员工入职</a></dd>
                 <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-edit" style="font-size: 25px; color: white;"></i>修改信息记录</a></dd>
-                <dd><a href="/test2" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 25px; color: white;"></i>离职员工信息</a></dd>
+                <dd><a href="/backui" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 25px; color: white;"></i>离职员工信息</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item ">
