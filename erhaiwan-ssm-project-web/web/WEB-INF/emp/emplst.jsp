@@ -33,7 +33,7 @@
             width: 1300px;
             padding-left: 50px;
         }
-        #refresh{
+        .refresh{
             width: 90px;
         }
         .selectdate{
@@ -49,23 +49,27 @@
 <div id="All" >
     <!--按条件搜索员工-->
     <div style="margin-top: 18px;margin-right: 50px">
-        <form action="/empselect" method="post">
+        <form action="/selectemp" method="post">
 
             <div id="selectform">
 
-            <label >姓名：</label><input type="text"  placeholder="请输入你要查询的姓名" style="width: 180px;height: 38px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label >姓名：</label><input type="text" name="eName" placeholder="请输入你要查询的姓名" style="width: 180px;height: 38px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <label>入职时间：</label><input type="date" name="date1" class="selectdate" />
             <i class="layui-icon layui-icon-date" style="font-size: 26px; color: skyblue;padding-top: 6px"></i>
              <input type="date" name="date2"  class="selectdate" />
-                    <select style="width: 135px;height:38px;">
+                    <select style="width: 135px;height:38px;" name="eDept">
                         <option value="">--请选择部门--</option>
                         <option value="总裁">总裁</option>
-                        <option value="技术部">技术部</option>
-                        <option value="保安部">保安部</option>
+                        <option value="会计">会计</option>
+                        <option value="保安">保安</option>
+                        <option value="经理">经理</option>
+                        <option value="维护员">维护员</option>
+                        <option value="清洁工">清洁工</option>
                     </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;
             <button class="layui-btn" lay-submit lay-filter="formDemo">点击查询</button>
-                <a href="/emplist?pageNum=1&pageSize=8" class="layui-btn" target="iframe_a" id="refresh" >刷新数据</a>
+                <a href="/emplist?pageNum=1&pageSize=8" id="refresh" class="layui-btn refresh" target="iframe_a"  >刷新数据</a>
+                <a href="/emplist?pageNum=1&pageSize=8" class="layui-btn refresh" target="iframe_a"  >导出数据</a>
 
             </div>
         </form>
@@ -73,7 +77,7 @@
     </div>
     <hr>
 
-    <div id="lstVip" class="table-responsive" style="text-align: center">
+    <div id="lstVip" class="table-responsive" style="text-align: center;margin-left: 25px">
         <table id="tblMain"  class="layui-table"  lay-skin="line">
             <tr>
                 <th>编号</th>
@@ -106,8 +110,8 @@
                     <td>${emp.ECondition}</td>
                     <td>${emp.EAddress}</td>
                     <td>${emp.ERemark}</td>
-                    <td><input type="button"  value="离职" onclick="del(${emp.EId})" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" />
-                        <input type="button"  value="修改" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" /></td>
+                    <td><input type="button"  value="离职" onclick="del(${emp.EId})" class="layui-btn layui-btn-danger" style="height: 32px;width: 60px;" />
+                        <a href="/updateui?eId=${emp.EId}" class="layui-btn layui-btn-warm" target="iframe_a" style="height: 32px" >修改</a></td>
                 </tr>
             </c:forEach>
 
@@ -116,7 +120,7 @@
     <div class="fenye">
         <ul class="pagination" >
             <br>
-            <li> <a href="/emplist?pageNum=1&pageSize=8" ><span id="sy">首页</span></a></li>
+            <li> <a href="/emplist?pageNum=1&pageSize=8">首页</a></li>
             <li><a href="/emplist?pageNum=${pageInfo.prePage}&pageSize=8">上一页</a></li>
             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
                 <li> <a href="/emplist?pageNum=${num}&pageSize=8">${num}</a> </li>
@@ -129,26 +133,76 @@
 
 </div>
 
+<br >
+
+<div id="div1" style="margin-left: 500px;float: left">
+    XXX
+    <a id="xx">显示</a>
+</div>
+
 </body>
+
 <script>
+
+    layui.use(['form','layer'], function(){
+        var form = layui.form
+        layer.msg("数据加载成功！");
+
+    });
     function del(eId) {
         if(confirm("是否删除此条信息？")==true)
         {
-        $.ajax({
-            url:"/delemp",
-            data:{"eId":eId},
-            method:"GET"
-        }).done(function () {
-            alert("删除成功！！！");
-            $("#sy").trigger("click");
-        }).fail(function () {
-            alert("删除失败！！！");
-        })
-    }}
-    layui.use(['form'], function(){
-        var form = layui.form
+            $.ajax({
+                url:"/delemp",
+                data:{"eId":eId},
+                method:"GET"
+            }).done(function () {
+                alert("删除成功！！！");
+                // $("#sy").trigger("click");第一种 刷新方式  下面是第二种
+                window.location.href=window.location.href;
 
-    });
+            }).fail(function () {
+                alert("删除失败！！！");
+            })
+        }};
+
+
+
+
+       $("#xx").click(function () {
+           loadEmp(1,8);
+       })
+
+    function loadEmp(pageNum,pageSize){
+        $.ajax({
+            type:"get",
+            url:"/emplist?pageNum="+pageNum+"&pageSize="+pageSize,
+            dataType:"json"
+        }).done(function (pageInfo) {
+            var table = "<div id='div2'><table >";
+            pageInfo.list.forEach(function (emp) {
+                table+="<tr>";
+                table+="<td>"+emp.eId+"</td>";
+                table+="<td>"+emp.eName+"</td>";
+                table+="</tr>";
+            })
+            table+="</table><br>";
+            table+="<input type='button' value='首页' class='bt' pageNum='1'pageSize='"+pageInfo.pageSize+"' />";
+            table+="<input type='button' value='上一页' class='bt' pageNum='"+pageInfo.prePage+"'pageSize='"+pageInfo.pageSize+"' />";
+            table+="<input type='button' value='下页' class='bt' pageNum='"+pageInfo.nextPage+"'pageSize='"+pageInfo.pageSize+"' />";
+            table+="<input type='button' value='尾页' class='bt' pageNum='"+pageInfo.navigateLastPage+"'pageSize='"+pageInfo.pageSize+"' />";
+            table+="</div>"
+            $("#div1").append(table)
+            $(".bt").on('click',function () {
+                //prop只能获取标签的固有属性
+                //attr可以获取自定义属性
+                loadUser($(this).attr("pageNum"),$(this).attr("pageSize"));
+            })
+        })
+    }
+
+
+
 
 
 </script>

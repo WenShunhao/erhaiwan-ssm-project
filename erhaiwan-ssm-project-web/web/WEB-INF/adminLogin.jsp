@@ -64,6 +64,7 @@
 </script>
 
 <script>
+
     window.onload = function (ev) {
         var nodeListOf = document.querySelectorAll("input");
         nodeListOf.forEach(function (o) {
@@ -85,3 +86,8 @@
 </script>
 </body>
 </html>
+
+
+
+
+

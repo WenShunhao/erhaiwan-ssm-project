@@ -12,4 +12,8 @@ public interface OperatorDao {
     OperatorInfo adminLogin(@Param("oAccount")String oAccount,@Param("oPassword") String oPassword);
     List<OperatorInfo> getAllInfo(@Param("pageNum")int pageNum, @Param("pageSize")int pageSize);
     String  selectByloginname(@Param("oAccount") String oAccount);
+
+//充值验证号码
+
+
 }

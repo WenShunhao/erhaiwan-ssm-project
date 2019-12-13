@@ -7,7 +7,9 @@
 }
 #projecttitle{
     font-family: "楷体";
-    font-size: 20px;
+    font-size: 30px;
+    color: rgb(51, 171, 160);
+    padding-left: 55px;
 }
 
 #daohang{

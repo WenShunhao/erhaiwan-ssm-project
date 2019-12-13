@@ -32,4 +32,30 @@
         insert into employeeinfo(e_name, e_birthday, e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark)
         values (#{eName},#{eBirthday},#{ePhone},#{eGender},#{eIdcard},#{eSalary},#{eHiredate},#{eDept},#{eCondition},#{eAddress},#{eRemark})
     </insert>
+
+<!--    修改员工信息:编号(不可修改),姓名，出生日期，手机号，性别，工资，部门，状态，家庭住址，备注信息-->
+    <update id="updateInfo" parameterType="com.entity.EmployeeInfo">
+        update employeeinfo set e_id=#{eId},e_name=#{eName},e_birthday=#{eBirthday},e_phone=#{ePhone}, e_gender=#{eGender},e_idcard=#{eIdcard}, e_salary=#{eSalary},e_dept=#{eDept}, e_condition=#{eCondition}, e_address=#{eAddress}, e_remark=#{eRemark}
+                            where e_id =#{eId}
+    </update>
+
+<!--    多条件查询信息:注意的地方   时间参数判断为空不能写‘’，否则就会报错500java.lang.String-->
+    <select id="getEmpSomeInfo"  resultType="com.entity.EmployeeInfo">
+        select e_id, e_name, e_birthday,e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark
+        from employeeinfo
+        where 1=1
+        <if test="eName != '' and eName != null">
+            and e_name like '%' #{eName} '%'
+        </if>
+
+        <if test="date1 != null">
+            <if test="date2 != null">
+            and  e_hiredate between #{date1} and #{date2}
+            </if>
+        </if>
+        <if test="eDept != '' and eDept != null">
+            and e_dept like '%' #{eDept} '%'
+        </if>
+    </select>
+
 </mapper>

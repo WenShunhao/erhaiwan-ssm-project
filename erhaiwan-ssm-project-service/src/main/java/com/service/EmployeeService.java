@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 //声明service层
 @Service
@@ -26,8 +27,19 @@ public class EmployeeService {
         dao.delInfo(eId);
         dao.addBackupInfo(info);
     }
+//    添加
     @Transactional
     public void empadd(EmployeeInfo employeeInfo){
         dao.addEmpInfo(employeeInfo);
+    }
+//    修改
+    @Transactional
+    public void empuedit(EmployeeInfo employeeInfo){
+        dao.updateInfo(employeeInfo);
+    }
+//    多条件查询
+    @Transactional
+    public List<EmployeeInfo> getEmpSomeInfo(String eName, Date date1,Date date2,String eDept, int pageNum, int pageSize){
+        return dao.getEmpSomeInfo(eName, date1, date2, eDept, pageNum, pageSize);
     }
 }
