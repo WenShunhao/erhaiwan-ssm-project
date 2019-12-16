@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RechargeDao">
+<!--    查询出操作员-->
+    <select id="queryId" resultType="Integer">
+        select o_id from  operatorinfo where o_account =#{oAccount}
+    </select>
+
+    <select id="findvCard" resultType="String">
+         select v_card from  vipinfo where v_card=#{#vCard}
+    </select>
+<!--添加充值记录-->
+    <insert id="addRecharge" parameterType="com.entity.Rechargeinfo">
+        insert into rechargeinfo(r_num, v_card, r_recharge, r_payway, o_id,r_remark)
+        values(#{rNum},#{vCard},#{rRecharge},#{rPayway},#{oId},#{rRemark})
+    </insert>
+<!--更新会员余额-->
+    <update id="updateMoney" >
+        update vipinfo set v_balance =v_balance+ #{rRecharge}
+        where v_card =#{vCard}
+    </update>
+
+
+
+</mapper>

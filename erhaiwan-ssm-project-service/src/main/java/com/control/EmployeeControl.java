@@ -66,7 +66,7 @@ public class EmployeeControl {
 //添加员工
     @RequestMapping("/addemp")
     @ResponseBody
-    public ModelAndView add(EmployeeInfo employeeInfo, HttpServletRequest request){
+    public ModelAndView add(EmployeeInfo employeeInfo){
         ModelAndView mv = new ModelAndView();
         System.out.println("传过来的值"+employeeInfo);
         dao.addEmpInfo(employeeInfo);

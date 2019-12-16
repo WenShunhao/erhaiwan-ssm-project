@@ -42,3 +42,52 @@ VALUES ('温顺豪',
         '2000-10-09','13049618318','男',
         '44162120001009595X',1000.0,'2012-10-02',
         '总裁','正式工','广东河源','这是个无业游民，被Boss挖掘的')
+
+
+-- 会员汽车信息表
+CREATE TABLE carinfo
+(
+    c_carplate VARCHAR(20) PRIMARY KEY COMMENT '车牌号',
+    c_brand    VARCHAR(20) COMMENT '汽车品牌',
+    c_type     VARCHAR(20) COMMENT '汽车类型',
+    c_color    VARCHAR(20) COMMENT '汽车颜色',
+    c_seat     INT COMMENT '汽车座位数'
+)ENGINE = InnoDB COMMENT '会员汽车信息表';
+
+-- 会员信息表
+CREATE TABLE vipinfo(
+    v_card INT PRIMARY KEY COMMENT '会员卡号/手机号',
+    v_password VARCHAR(20) COMMENT '密码',
+    v_name VARCHAR(20) COMMENT '持卡人姓名',
+    v_balance DOUBLE DEFAULT '0' COMMENT '余额',
+    v_carplate VARCHAR(20) COMMENT '关联车牌号',
+    v_birthday Date COMMENT '出生日期',
+    v_gender VARCHAR(4) COMMENT '性别',
+    v_address VARCHAR(50) COMMENT '通讯地址',
+    v_condition VARCHAR(10) COMMENT '状态',
+        foreign key(v_carplate) references carinfo(c_carplate)
+)ENGINE = InnoDB COMMENT '会员信息表';
+
+-- 会员充值表
+CREATE TABLE rechargeinfo(
+    r_num INT PRIMARY KEY COMMENT '充值编号',
+    v_card VARCHAR(12) COMMENT '会员卡号',
+    r_recharge DOUBLE COMMENT '充值金额',
+    r_payway VARCHAR(20) COMMENT '支付方式',
+    o_id INT COMMENT '操作员工编号',
+    r_time DATETIME COMMENT '交易时间',
+    r_remark VARCHAR(50) COMMENT '交易备注',
+    FOREIGN KEY(v_card) REFERENCES vipinfo(v_card),
+    FOREIGN KEY (o_id) REFERENCES operatorinfo(o_id)
+)ENGINE = InnoDB COMMENT '会员充值信息表';
+alter table rechargeinfo change r_time r_time timestamp not null default NOW();
+
+
+
+-- 计费标准设置表
+CREATE TABLE setbilling(
+    b_ordinarytime INT COMMENT '计时/小时(临时客户)',
+    b_ordinaryfee DOUBLE COMMENT '费用(临时客户)',
+    b_viptime INT COMMENT '计时/小时(会员客户)',
+    b_vipfee DOUBLE COMMENT '费用(会员客户)'
+)ENGINE = InnoDB COMMENT '计费标准设置表';

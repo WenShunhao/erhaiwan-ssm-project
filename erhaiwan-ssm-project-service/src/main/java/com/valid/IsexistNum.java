@@ -10,8 +10,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = {IsexistNameValid.class})
-public   @interface IsexistName {
+@Constraint(validatedBy = {IsexistNumValid.class})
+public   @interface IsexistNum {
     String message() default "{javax.validation.constraints.Size.message}";
 
     Class<?>[] groups() default { };
