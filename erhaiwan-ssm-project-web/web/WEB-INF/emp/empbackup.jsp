@@ -49,7 +49,7 @@
 <div id="All" >
     <!--按条件搜索员工-->
     <div style="margin-top: 18px;margin-right: 50px">
-        <form action="/empselect" method="post">
+        <form action="/selectemp" method="post">
 
             <div id="selectform">
 
@@ -68,7 +68,7 @@
                 </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;
             <button class="layui-btn" lay-submit lay-filter="formDemo">点击查询</button>
-                <a href="/empbackup?pageNum=1&pageSize=8" class="layui-btn" target="iframe_a" id="refresh" >刷新数据</a>
+                <a href="/empbackuplist?pageNum=1&pageSize=8" class="layui-btn" target="iframe_a" id="refresh" >刷新数据</a>
 
             </div>
         </form>
@@ -92,50 +92,35 @@
                 <th>备注</th>
                 <th>操作</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>测试</td>
-                <td>123049618318</td>
-                <td>男</td>
-                <td>44444444444444</td>
-                <td>2000-10-22</td>
-                <td>2019-1-4</td>
-                <td>总裁</td>
-                <td>离职</td>
-                <td>广东河源</td>
-                <td>离职原因：个人情况</td>
-                <td><input type="button"  value="删除" onclick="" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" />
-                <td><input type="button"  value="还原" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" />
-            </tr>
-
-            <%--            <c:forEach items="${pageInfo.list}" var="emp">--%>
-            <%--                <tr>--%>
-            <%--                    <td>${emp.EId}</td>--%>
-            <%--                    <td>${emp.EName}</td>--%>
-            <%--                    <td>${emp.EPhone}</td>--%>
-            <%--                    <td>${emp.EGender}</td>--%>
-            <%--                    <td>${emp.EIdcard}</td>--%>
-            <%--                    <td>${emp.EHiredate}</td>--%>
-            <%--                    <td>${emp.ELeavedate}</td>--%>
-            <%--                    <td>${emp.EDept}</td>--%>
-            <%--                    <td>${emp.ECondition}</td>--%>
-            <%--                    <td>${emp.EAddress}</td>--%>
-            <%--                    <td>${emp.ERemark}</td>--%>
-            <%--                    <td><input type="button"  value="删除" onclick="" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" /><td><input type="button"  value="还原" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" />--%>
-            <%--                </tr>--%>
-            <%--            </c:forEach>--%>
+            <c:forEach items="${pageInfo.list}" var="emp">
+                <tr>
+                <td>${emp.eId}</td>
+                <td>${emp.eName}</td>
+                <td>${emp.ePhone}</td>
+                <td>${emp.eGender}</td>
+                <td>${emp.eIdcard}</td>
+                <td>${emp.eHiredate}</td>
+                <td>${emp.eLeavedate}</td>
+                <td>${emp.eDept}</td>
+                <td>${emp.eCondition}</td>
+                <td>${emp.eAddress}</td>
+                <td>${emp.eRemark}</td>
+                <td><input type="button"  value="删除" onclick="del(${emp.eId})" class="layui-btn layui-btn-danger" style="height: 32px; margin-top: -5px;width: 60px;" />
+                    <input type="button"  value="还原" onclick="" class="layui-btn layui-btn-warm" style="height: 32px; margin-top: -5px;width: 60px;" /></td>
+               </tr>
+       </c:forEach>
 
         </table>
     <div class="fenye">
         <ul class="pagination" >
             <br>
-            <li> <a href="/emplist?pageNum=1&pageSize=8" ><span id="sy">首页</span></a></li>
-            <li><a href="/emplist?pageNum=${pageInfo.prePage}&pageSize=8">上一页</a></li>
+            <li> <a href="/empbackuplist?pageNum=1&pageSize=8" >首页</a></li>
+            <li><a href="/empbackuplist?pageNum=${pageInfo.prePage}&pageSize=8">上一页</a></li>
             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
-                <li> <a href="/emplist?pageNum=${num}&pageSize=8">${num}</a> </li>
+                <li> <a href="/empbackuplist?pageNum=${num}&pageSize=8">${num}</a> </li>
             </c:forEach>
-            <li> <a href="/emplist?pageNum=${pageInfo.nextPage}&pageSize=8">下一页</a></li>
-            <li> <a href="/emplist?pageNum=${pageInfo.pages}&pageSize=8">尾页</a></li>
+            <li> <a href="/empbackuplist?pageNum=${pageInfo.nextPage}&pageSize=8">下一页</a></li>
+            <li> <a href="/empbackuplist?pageNum=${pageInfo.pages}&pageSize=8">尾页</a></li>
         </ul>
     </div>
     </div>
@@ -144,24 +129,28 @@
 
 </body>
 <script>
-    function del(eId) {
-        if(confirm("是否删除此条信息？")==true)
-        {
-        $.ajax({
-            url:"/delemp",
-            data:{"eId":eId},
-            method:"GET"
-        }).done(function () {
-            alert("删除成功！！！");
-            $("#sy").trigger("click");
-        }).fail(function () {
-            alert("删除失败！！！");
-        })
-    }}
     layui.use(['form'], function(){
         var form = layui.form
 
     });
+
+    function del(eId) {
+        if(confirm("是否删除此条信息？")==true)
+        {
+            $.ajax({
+                url:"/delbkemp",
+                data:{"eId":eId},
+                method:"GET"
+            }).done(function () {
+                alert("删除成功！！！");
+                // $("#sy").trigger("click");第一种 刷新方式  下面是第二种
+                window.location.href=window.location.href;
+
+            }).fail(function () {
+                alert("删除失败！！！");
+            })
+        }};
+
 
 
 </script>

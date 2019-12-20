@@ -4,6 +4,7 @@ import com.dao.EmployeeDao;
 import com.entity.EmployeeInfo;
 import com.github.pagehelper.PageInfo;
 import com.service.EmployeeService;
+import com.tool.ExcleExportImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.util.List;
 
@@ -27,8 +27,7 @@ public class EmployeeControl {
     private EmployeeService service;
 //        转换时间格式
     @InitBinder
-    public void xxxx( WebDataBinder dataBinder) {
-
+    public void xxxx(WebDataBinder dataBinder) {
         DateFormatter dateFormatter = new DateFormatter();
         dateFormatter.setPattern("yyyy-MM-dd");
         dataBinder.addCustomFormatter(dateFormatter);
@@ -37,7 +36,7 @@ public class EmployeeControl {
 //员工列表
     @RequestMapping("/emplist")
     public ModelAndView lst(@RequestParam(value = "pageNum",required = false,defaultValue = "1")Integer pageNum,
-                              @RequestParam(value = "pageSize",required = false,defaultValue = "8")Integer pageSize) throws Exception {
+                              @RequestParam(value = "pageSize",required = false,defaultValue = "8")Integer pageSize){
         ModelAndView mv = new ModelAndView();
         List<EmployeeInfo> all = dao.getEmpAllInfo(pageNum, pageSize);
         PageInfo<EmployeeInfo> pageInfo = new PageInfo<>(all,5);
@@ -74,13 +73,6 @@ public class EmployeeControl {
         return mv;
 
     }
-//备份界面
-    @RequestMapping("/backui")
-    public ModelAndView backup(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("emp/empbackup");
-        return mav;
-    }
 
 
     //修改界面
@@ -114,6 +106,18 @@ public class EmployeeControl {
         mv.addObject("pageInfo",pageInfo);
         mv.setViewName("emp/emplst");
         return mv;
+    }
+
+
+    //打印会员信息
+    @RequestMapping("/exportemp")
+    public void exportEmp(HttpServletResponse response){
+        try{
+            List<EmployeeInfo> all = service.exportVipAllInfo();
+            ExcleExportImp.exportExcel(all,EmployeeInfo.class,"洱海湾员工信息列表","详情信息表",response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

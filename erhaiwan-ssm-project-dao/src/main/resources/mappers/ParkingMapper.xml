@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ParkingDao">
+<!--    查询所有正在停车的数据-->
+    <select id="getAllParkinginfo" resultType="com.entity.Parkinginfo">
+        select p_num,c_carplate,p_card,p_picture,p_entrytime,p_type,v_card,v_phone,p_condition,p_remark
+        from parkinginfo where p_condition ='正在停车中' order by p_num
+    </select>
+
+
+    <!--    多条件查询信息:注意的地方   时间参数判断为空不能写‘’，否则就会报错500java.lang.String-->
+    <select id="getParkinginfo"  resultType="com.entity.Parkinginfo">
+        select p_num,c_carplate,p_card,p_picture,p_entrytime,p_type,v_card,v_phone,p_condition,p_remark
+        from parkinginfo where 1=1
+        <if test="vPhone != '' and vPhone != null">
+            and v_phone like '%' #{vPhone} '%'
+        </if>
+        <if test="date1 != null">
+            <if test="date2 != null">
+                and  p_entrytime between #{date1} and #{date2}
+            </if>
+        </if>
+        <if test="pType != '' and pType != null">
+            and p_type like '%' #{pType} '%'
+        </if>
+        and p_condition ='正在停车中' order by p_num
+    </select>
+
+<!--登记临时用户-->
+    <insert id="addLsparking" parameterType="com.entity.Parkinginfo">
+        insert into parkinginfo(c_carplate, p_card, p_picture, p_type,v_phone)
+        values(#{cCarplate},#{pCard},#{pPicture},#{pType},#{vPhone})
+    </insert>
+
+<!--    登记会员客户-->
+    <select id="getOneinfo" resultType="com.entity.Vipinfo">
+        select v_card,v_name,v_balance, c_carplate,v_condition
+        from vipinfo where v_card =#{vCard}
+    </select>
+    <insert id="addVipparking" parameterType="com.entity.Parkinginfo">
+        insert into parkinginfo(c_carplate, p_card, p_picture, p_type,v_card,v_phone)
+        values(#{cCarplate},#{pCard},#{pPicture},#{pType},#{vCard},#{vPhone})
+    </insert>
+<!--结算-->
+    <select id="jscost" resultType="Double">
+    SELECT (UNIX_TIMESTAMP(#{pLeavetime})-UNIX_TIMESTAMP(#{pEntrytime}))/3600;
+    </select>
+
+    <update id="overParking" parameterType="com.entity.Parkinginfo">
+        update parkinginfo set p_leavetime =#{pLeavetime},p_payway=#{pPayway},p_cost=#{pCost},p_condition=#{pCondition},p_remark=#{pRemark}
+        where p_num =#{pNum}
+    </update>
+
+    <select id="getOverinfo" parameterType="Integer" resultType="com.entity.Parkinginfo">
+        select p_num, c_carplate, p_card, p_picture, p_entrytime, p_leavetime, p_type, p_cost, p_payway, v_card, v_phone, p_condition, p_remark
+        from parkinginfo where p_num =#{pNum};
+
+    </select>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.VipinfoDao">
+<!--    查询所有会员数据-->
+    <select id="getVipAllinfo" resultType="com.entity.Vipinfo">
+        select v_card, v_password, v_name, v_balance, c_carplate, v_birthday, v_gender, v_address, v_condition
+        from vipinfo order by v_card
+    </select>
+
+    <select id="exportVipAllinfo" resultType="com.entity.Vipinfo">
+        select v_card, v_password, v_name, v_balance, c_carplate, v_birthday, v_gender, v_address, v_condition
+        from vipinfo order by v_card
+    </select>
+<!--    查询车况-->
+    <select id="getCarinfo" parameterType="String" resultType="com.entity.Carinfo">
+        select c_carplate, c_brand, c_type, c_color, c_seat from carinfo
+        where c_carplate = #{cCarplate}
+    </select>
+
+<!--    删除数据by 会员卡-->
+    <delete id="delVipinfo" parameterType="String">
+        delete from vipinfo where v_card = #{vCard}
+    </delete>
+
+<!--    添加会员信息/管理员操作-->
+    <insert id="addVipInfo" parameterType="com.entity.Vipinfo">
+        insert into vipinfo(v_card, v_password, v_name, c_carplate, v_birthday, v_gender, v_address)
+        values (#{vCard},#{vPassword},#{vName},#{cCarplate},#{vBirthday},#{vGender},#{vAddress})
+    </insert>
+    <!--    添加汽车信息-->
+    <insert id="addCarinfo" parameterType="String">
+        insert into carinfo(c_carplate)
+        values (#{cCarplate})
+    </insert>
+
+<!--    修改会员信息:会员卡(不可修改),密码，姓名，余额，车牌号，生日，性别，通讯住址，状态-->
+
+    <select id="queryOneinfo" resultType="com.entity.Vipinfo">
+        select v_card, v_password, v_name, v_balance, c_carplate, v_birthday, v_gender, v_address, v_condition
+        from vipinfo where v_card =#{vCard}
+    </select>
+
+    <update id="updateVipinfo" parameterType="com.entity.Vipinfo">
+        update vipinfo set v_card=#{vCard},v_password=#{vPassword},v_name=#{vName},v_balance=#{vBalance}, c_carplate=#{cCarplate},v_birthday=#{vBirthday}, v_gender=#{vGender},v_address=#{vAddress}, v_condition=#{vCondition}
+                            where v_card =#{vCard}
+    </update>
+
+<!--    多条件查询信息:注意的地方   时间参数判断为空不能写‘’，否则就会报错500java.lang.String-->
+    <select id="getVipSomeinfo"  resultType="com.entity.Vipinfo">
+        select v_card, v_password, v_name, v_balance, c_carplate, v_birthday, v_gender, v_address, v_condition
+        from vipinfo
+        where 1=1
+        <if test="vName != '' and vName != null">
+            and v_name like '%' #{vName} '%'
+        </if>
+        <if test="vCard != '' and vCard != null">
+            and v_card like '%' #{vCard} '%'
+        </if>
+        <if test="vGender != '' and vGender != null">
+            and v_gender like  #{vGender}
+        </if>
+
+    </select>
+
+<!--    批量删除-->
+<!--    <delete id="deletebrach">-->
+<!--        delete from employeeinfo where-->
+<!--        <foreach collection="list" item="key" separator="or">-->
+<!--            e_id = #{key}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+</mapper>

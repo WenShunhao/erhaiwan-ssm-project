@@ -54,9 +54,9 @@
             <div id="selectform">
 
             <label >姓名：</label><input type="text" name="eName" placeholder="请输入你要查询的姓名" style="width: 180px;height: 38px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <label>入职时间：</label><input type="date" name="date1" class="selectdate" />
+             <label>入职时间：</label><input type="date" name="date1" id="date1" class="selectdate" />
             <i class="layui-icon layui-icon-date" style="font-size: 26px; color: skyblue;padding-top: 6px"></i>
-             <input type="date" name="date2"  class="selectdate" />
+             <input type="date" name="date2" id="date2" class="selectdate" />
                     <select style="width: 135px;height:38px;" name="eDept">
                         <option value="">--请选择部门--</option>
                         <option value="总裁">总裁</option>
@@ -69,7 +69,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
             <button class="layui-btn" lay-submit lay-filter="formDemo">点击查询</button>
                 <a href="/emplist?pageNum=1&pageSize=8" id="refresh" class="layui-btn refresh" target="iframe_a"  >刷新数据</a>
-                <a href="/emplist?pageNum=1&pageSize=8" class="layui-btn refresh" target="iframe_a"  >导出数据</a>
+                <a type="export" id="export" href="/exportemp"  class="layui-btn refresh" style="width: 120px">导出所有数据</a>
 
             </div>
         </form>
@@ -98,20 +98,20 @@
 
             <c:forEach items="${pageInfo.list}" var="emp">
                 <tr>
-                    <td>${emp.EId}</td>
-                    <td>${emp.EName}</td>
-                    <td>${emp.EBirthday}</td>
-                    <td>${emp.EPhone}</td>
-                    <td>${emp.EGender}</td>
-                    <td>${emp.EIdcard}</td>
-                    <td>${emp.ESalary}</td>
-                    <td>${emp.EHiredate}</td>
-                    <td>${emp.EDept}</td>
-                    <td>${emp.ECondition}</td>
-                    <td>${emp.EAddress}</td>
-                    <td>${emp.ERemark}</td>
-                    <td><input type="button"  value="离职" onclick="del(${emp.EId})" class="layui-btn layui-btn-danger" style="height: 32px;width: 60px;" />
-                        <a href="/updateui?eId=${emp.EId}" class="layui-btn layui-btn-warm" target="iframe_a" style="height: 32px" >修改</a></td>
+                    <td>${emp.eId}</td>
+                    <td>${emp.eName}</td>
+                    <td>${emp.eBirthday}</td>
+                    <td>${emp.ePhone}</td>
+                    <td>${emp.eGender}</td>
+                    <td>${emp.eIdcard}</td>
+                    <td>${emp.eSalary}</td>
+                    <td>${emp.eHiredate}</td>
+                    <td>${emp.eDept}</td>
+                    <td>${emp.eCondition}</td>
+                    <td>${emp.eAddress}</td>
+                    <td>${emp.eRemark}</td>
+                    <td><input type="button"  value="离职" onclick="del(${emp.eId})" class="layui-btn layui-btn-danger" style="height: 32px;width: 60px;" />
+                        <a href="/updateui?eId=${emp.eId}" class="layui-btn layui-btn-warm" target="iframe_a" style="height: 32px" >修改</a></td>
                 </tr>
             </c:forEach>
 
@@ -144,10 +144,16 @@
 
 <script>
 
-    layui.use(['form','layer'], function(){
+    layui.use(['form','layer','laydate'], function(){
         var form = layui.form
+        var laydate = layui.laydate;
         layer.msg("数据加载成功！");
-
+        laydate.render({
+            elem: '#date1',
+        });
+        laydate.render({
+            elem: '#date2',
+        });
     });
     function del(eId) {
         if(confirm("是否删除此条信息？")==true)

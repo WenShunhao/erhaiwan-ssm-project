@@ -5,11 +5,11 @@
 <mapper namespace="com.dao.RechargeDao">
 <!--    查询出操作员-->
     <select id="queryId" resultType="Integer">
-        select o_id from  operatorinfo where o_account =#{oAccount}
+        select o_id from  operatorinfo where o_account = #{oAccount}
     </select>
 
     <select id="findvCard" resultType="String">
-         select v_card from  vipinfo where v_card=#{#vCard}
+         select v_card from  vipinfo where v_card=#{vCard}
     </select>
 <!--添加充值记录-->
     <insert id="addRecharge" parameterType="com.entity.Rechargeinfo">
@@ -22,6 +22,18 @@
         where v_card =#{vCard}
     </update>
 
-
+<!--停车费用查询-->
+    <select id="feedata1" resultType="Double">
+        select b_ordinaryfee from setbilling where b_id =1
+    </select>
+    <!--停车费用查询-->
+    <select id="feedata2" resultType="Double">
+        select b_vipfee from setbilling where b_id =1
+    </select>
+<!--    修改停车费用-->
+    <update id="updatefee" parameterType="com.entity.SetBilling">
+        update setbilling set b_ordinaryfee =#{bOrdinaryfee},b_vipfee =#{bVipfee}
+        where b_id = 1
+    </update>
 
 </mapper>

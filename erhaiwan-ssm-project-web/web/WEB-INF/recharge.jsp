@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>充值缴费</title>
@@ -61,7 +62,7 @@
         <div id="VipPhone">
             <label class="layui-form-label ziti">充值号码：</label>
             <div class="layui-input-block">
-                <input type="text" id="vCard1" name="vCard1" maxlength="11" required lay-verify="required" placeholder="请输入11位会员号(手机号)" autocomplete="off" class="layui-input"><div id="msg" style="color:red;display:inline;">x</div>
+                <input type="text" id="vCard1" name="vCard1" maxlength="11" required lay-verify="required" placeholder="请输入11位会员号(手机号)" autocomplete="off" class="layui-input"><div id="msg" style="display:inline;"></div>
             </div>
         </div>
         <br>
@@ -79,15 +80,15 @@
             <div class="moneykuang" id="money4" name="money4" value="200" onclick="select(this)">
                 <label class="zz">200元</label>
             </div>
-            <div class="moneykuang" id="money5" name="money5" value="200" onclick="select(this)">
-                <label class="zz">500元</label>
+            <div class="moneykuang" id="money5" name="money5" value="300" onclick="select(this)">
+                <label class="zz">300元</label>
             </div>
 
             <br />
             <br />
             <br />
-            <input type="text" id="vRecharge1" name="vRecharge1"  placeholder="¥请输入充值金额"  class="layui-input"
-                    style="margin-top: 10px;" maxlength="10">
+            <input type="text" id="rRecharge1" name="rRecharge1"  placeholder="¥请输入充值金额"  class="layui-input"
+                   style="margin-top: 10px;" maxlength="10">
         </div>
 
         <br />
@@ -106,7 +107,7 @@
 <br>
 <br>
 
-<form method="post">
+<form method="post" action="/updatefee">
     <table align="center" cellpadding="1" cellspacing="1"  style="width: 600px;text-align: center;height: 150px;font-family: 华文中宋;font-size: 18px;" border="1">
         <tr>
             <td>客户类型</td>
@@ -116,21 +117,23 @@
 
         <tr>
             <td>临时客户</td>
-            <td><input type="text" name="fee1" required lay-verify="required" placeholder="¥费用" autocomplete="off" class="layui-input"
-                       value="" style="border: 0px; border-bottom: 1px solid gray;" maxlength="10"></td>
+            <td><input type="text" name="bOrdinaryfee"  id="bOrdinaryfee" required lay-verify="required" placeholder="¥费用" autocomplete="off" class="layui-input"
+                       value="${info1}" style="border: 0px; border-bottom: 1px solid gray;" maxlength="10"></td>
             <td><label>每小时/h</label></td>
         </tr>
         <tr>
             <td>会员客户</td>
-            <td><input type="text" name="fee2" required lay-verify="required" placeholder="¥费用" autocomplete="off" class="layui-input"
-                       value="" style="border: 0px; border-bottom: 1px solid gray;" maxlength="10"></td>
+
+            <td><input type="text" name="bVipfee" id="bVipfee" required lay-verify="required" placeholder="¥费用" autocomplete="off" class="layui-input"
+                       value="${info2}" style="border: 0px; border-bottom: 1px solid gray;" maxlength="10"></td>
+
             <td><label>每小时/h</label></td>
         </tr>
 
     </table>
     <br>
     <br>
-    <input type="submit"  value="保存修改" onclick="closeDialog()" class="layui-btn layui-btn-normal" style="width: 220px;height: 50px; border-radius: 4px;margin-left: 470px;" />
+    <input type="submit" id="tanchuang" value="保存修改" onclick="closeDialog()" class="layui-btn layui-btn-normal" style="width: 220px;height: 50px; border-radius: 4px;margin-left: 470px;" />
     <br>
     <br>
     <br>
@@ -141,87 +144,95 @@
 
 
 <!--支付页面-->
-<form action="" method="post">
 
 
-<div id="light" class="white_content" style="height: 440px">
 
-    <h2 align="center" style="margin-top: 20px;">-----------------------支付页面-----------------------</h2>
-    <form action="/recharge2" method="post" class="layui-form">
-        <label class="layui-form-label ziti">会员卡号：</label>
-        <div class="layui-input-block">
-            <input type="text" id="vCard" name="vCard"  class="layui-input" style="border: 0px; border-bottom: 1px solid gray;width: 200px"
-                   readonly="readonly">
-        </div>
-        <br>
-        <label class="layui-form-label ziti">充值金额：</label>
-        <div class="layui-input-block">
-            <input type="text" id="vRecharge" name="vRecharge"  class="layui-input" style="border: 0px;color: red;font-size: 18px" readonly="readonly">
-        </div>
-        <br>
-        <label class="layui-form-label ziti">充值方式：</label>
-        <div class="layui-input-block"  >
-        <select name="rPayway" id="rPayway" style="margin-top: 8px;width: 200px;height: 25px" >
-            <option value="微信支付">微信支付</option>
-            <option value="支付宝支付">支付宝支付</option>
-            <option value="现金支付">现金支付</option>
-            <option value="银行卡刷卡">银行卡刷卡</option>
-        </select>
-        </div>
-        <br>
-        <br>
-        <label class="layui-form-label ziti">备注：</label>
-        <div class="layui-input-block">
-            <textarea name="rRemark" id="rRemark" placeholder="备注:" class="layui-textarea" style="width: 200px"></textarea>
-        </div>
-        <br>
-        <br>
-        <button type="submit" class="layui-btn" lay-submit   lay-filter="formDemo" style="height: 45px;width: 200px;margin-left: 110px;" >充值</button>
-    </form>
-</div>
-<div id="fade" class="black_overlay"></div>
-</form>
+    <div id="light" class="white_content" style="height: 440px">
+
+        <h2 align="center" style="margin-top: 20px;">-----------------------支付页面-----------------------</h2>
+        <form action="/surerecharge?username=${username}" method="post" >
+            <label class="layui-form-label ziti">会员卡号：</label>
+            <div class="layui-input-block">
+                <input type="text" id="vCard" name="vCard" required lay-verify="required" autocomplete="off"  class="layui-input" style="border: 0px; border-bottom: 1px solid gray;width: 200px"
+                       readonly="readonly">
+            </div>
+            <br>
+            <label class="layui-form-label ziti">充值金额：</label>
+            <div class="layui-input-block">
+                <input type="text" id="rRecharge" name="rRecharge"  required lay-verify="required" autocomplete="off" class="layui-input" style="border: 0px;color: red;font-size: 18px" readonly="readonly">
+            </div>
+            <br>
+            <label class="layui-form-label ziti">充值方式：</label>
+            <div class="layui-input-block"  >
+                <select name="rPayway" id="rPayway" style="margin-top: 8px;width: 200px;height: 25px" >
+                    <option value="微信支付">微信支付</option>
+                    <option value="支付宝支付">支付宝支付</option>
+                    <option value="现金支付">现金支付</option>
+                    <option value="银行卡刷卡">银行卡刷卡</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <label class="layui-form-label ziti">备注：</label>
+            <div class="layui-input-block">
+                <textarea name="rRemark" id="rRemark" placeholder="备注:" class="layui-textarea" style="width: 200px"></textarea>
+            </div>
+            <br>
+            <br>
+            <button type="submit"  class="layui-btn" lay-submit   lay-filter="formDemo" style="height: 45px;width: 200px;margin-left: 110px;" >充值</button>
+        </form>
+    </div>
+    <div id="fade" class="black_overlay"></div>
+
 <!--支付页面  ===============end==================-->
 </body>
 <script type="text/javascript">
-// 点击获取当前选中金额
+
+    // 点击获取当前选中金额
     function select(obj) {
-    var my = $(obj).attr("value");
-    document.getElementById("vRecharge1").value=my;
+        var my = $(obj).attr("value");
+        document.getElementById("rRecharge1").value=my;
     };
-
-
-
-//浮框
+    //浮框
     $(function() {})
     function openDialog() {
         var phone = $("#vCard1").val();
-        var jine = $("#vRecharge1").val();
+        var jine = $("#rRecharge1").val();
         document.getElementById("vCard").value=phone;
-        document.getElementById("vRecharge").value=jine;
+        document.getElementById("rRecharge").value=jine;
         document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block'
     }
-
     function closeDialog() {
         document.getElementById('light').style.display = 'none';
         document.getElementById('fade').style.display = 'none'
     }
-$(document).ready(function(){
-             //给账号文本框绑定失去焦点的事件
-             $("#vCard1").blur(function(){
-                     alert("测试"+$(this).val());
-                     $.ajax({
-                             url:"/panduan",//设置服务器地址，即为servlet配置的url-pattern
-                             type:"post",//提交的方式
-                             data:{vCard:$(this).val()},//提交到服务器的数据，多个值以逗号分割开{account:$(this).val(),...}
-                         success:function(data){//回调函数，data是返回的数据
-                                 $("#msg").html(data);
-                             }
-                     });
-                 });
+    $(document).ready(function(){
+        //给账号文本框绑定失去焦点的事件
+        $("#vCard1").blur(function(){
+            // alert("测试"+$(this).val());
+            $.ajax({
+                url:"/panduan",//设置服务器地址，即为servlet配置的url-pattern
+                type:"post",//提交的方式
+                data:{vCard:$(this).val()},//提交到服务器的数据，多个值以逗号分割开{account:$(this).val(),...}
+                success:function(data){//回调函数，data是返回的数据
+                    $("#msg").html(data);
+                }
+            });
         });
+    });
 
 
+    layui.use(['form','layer'], function(){
+        var form = layui.form;
+        $("#tanchuang").click(function () {
+            layer.msg('修改成功', {
+                icon: 1,
+                time: 4000 //2秒关闭（如果不配置，默认是3秒）
+            }, function(){
+                //do something
+            });
+        })
+    });
 </script>
 </html>

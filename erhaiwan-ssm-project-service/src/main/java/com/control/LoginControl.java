@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,7 +26,7 @@ private OperatorDao dao;
     }
 
     @RequestMapping("/lndex")
-    public ModelAndView login(@Valid OperatorInfo operatorInfo,BindingResult bindingResult, HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    public ModelAndView login(@Valid OperatorInfo operatorInfo, BindingResult bindingResult, HttpServletRequest req, HttpSession session) throws Exception {
         req.setCharacterEncoding("UTF-8");
         ModelAndView mv = new ModelAndView();
         String oAccount = req.getParameter("oAccount");
@@ -44,7 +44,8 @@ private OperatorDao dao;
             mv.addObject("error","*账号或密码错误，请检查！");
         } else {
             mv.setViewName("adminIndex");
-            mv.addObject("username",oAccount);
+            session.setAttribute("username",oAccount);
+
 
         }
         return mv;

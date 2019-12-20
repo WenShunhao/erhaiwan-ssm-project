@@ -8,6 +8,11 @@
         select e_id, e_name, e_birthday,e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark
         from employeeinfo order by e_id
     </select>
+    <select id="exportEmpAllInfo" resultType="com.entity.EmployeeInfo">
+        select e_id, e_name, e_birthday,e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark
+        from employeeinfo order by e_id
+    </select>
+
 
 
 <!--    备份操作start-->
@@ -57,5 +62,13 @@
             and e_dept like '%' #{eDept} '%'
         </if>
     </select>
+
+<!--    批量删除-->
+<!--    <delete id="deletebrach">-->
+<!--        delete from employeeinfo where-->
+<!--        <foreach collection="list" item="key" separator="or">-->
+<!--            e_id = #{key}-->
+<!--        </foreach>-->
+<!--    </delete>-->
 
 </mapper>

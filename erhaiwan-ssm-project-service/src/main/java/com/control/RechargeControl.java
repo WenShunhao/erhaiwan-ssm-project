@@ -1,7 +1,6 @@
 package com.control;
-
-import com.dao.RechargeDao;
 import com.entity.Rechargeinfo;
+import com.entity.SetBilling;
 import com.service.RechargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,20 +12,36 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @Controller
 public class RechargeControl {
     @Autowired
-    private RechargeDao dao;
+    private RechargeService dao;
 
+//显示停车费用数据
     @RequestMapping("/recharge")
     public ModelAndView recharge(){
         ModelAndView mv = new ModelAndView();
+        Double info1 = dao.getfeeinfo1();
+        Double info2 = dao.getfeeinfo2();
+        mv.addObject("info1",info1);
+        mv.addObject("info2",info2);
         mv.setViewName("recharge");
         return mv;
     }
-
+//    修改停车费用
+@RequestMapping("/updatefee")
+public ModelAndView updateemp(SetBilling setBilling){
+    ModelAndView mv = new ModelAndView();
+    System.out.println("传过来的值employeeInfo = " + setBilling);
+    dao.updatefee(setBilling);
+    mv.setViewName("redirect:/recharge");
+    return mv;
+}
+//异步请求 判断账号情况
     @PostMapping("/panduan")
     @ResponseBody
     public String panduan(HttpServletResponse response , HttpServletRequest request)throws Exception{
@@ -37,40 +52,48 @@ public class RechargeControl {
         request.setCharacterEncoding("utf-8");
         String vCard = request.getParameter("vCard");
 //        测试
-        System.out.println("vCard = " + vCard);
-
-        String findvCard = dao.findvCard(vCard);
+//        System.out.println("vCardyyy = " + vCard);
+        String findvCard = dao.fingCard(vCard);
+//        System.out.println("xxx"+findvCard);
         if (findvCard!=null){
             out.println("<font color='green'>√</font>");
-        }else{
-            out.println("<font color='red'>该账号不存在！！</font>");
+        }else {
+            out.println("<font color='red'>该会员账号不存在！！</font>");
         }
         out.flush();//刷新流
         out.close();//关闭流
         return "recharge";
 
     }
-
-    @RequestMapping("/recharge2")
+//充值
+    @RequestMapping("/surerecharge")
     @ResponseBody
-    public ModelAndView recharge(Rechargeinfo rechargeinfo){
+    public ModelAndView recharge2(Rechargeinfo rechargeinfo,String username){
         ModelAndView mv = new ModelAndView();
-        //获取用户输入的数据
-        String card = dao.findvCard(rechargeinfo.getVCard());
-        System.out.println("card = " + card);
-        rechargeinfo.setRNum("dwqqd1231231");
-        rechargeinfo.setOId(1);
-        if (card!=null){
-            dao.addRecharge(rechargeinfo);
-            dao.updateMoney(rechargeinfo.getVCard(),rechargeinfo.getRRecharge());
-            mv.addObject("success","充值成功！！！");
-            mv.setViewName("recharge");
-            return mv;
-        }else{
-            mv.addObject("info","无法查找到该账号信息！");
-            mv.setViewName("recharge");
-            return mv;
-        }
+//        查询操作员工
+//        System.out.println(username);
+        int oId = dao.finoper(username);
+        rechargeinfo.setOId(oId);
+        rechargeinfo.setRNum("020"+random());
+        System.out.println("值"+rechargeinfo);
+        dao.recharge(rechargeinfo);
+        mv.setViewName("recharge");
 
+        return mv;
     }
+//随机充值订单编号
+    public static int random(){
+        SimpleDateFormat formatter2 = new SimpleDateFormat ("yyyyMMddHHmmss");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String str = formatter2.format(curDate);
+        String cur = str.substring(0,2);
+        String cur2 = str.substring(2,4);
+        String temp = (Integer.parseInt(cur)+Integer.parseInt(cur2))+""+str.substring(4);
+        int cur_id = Integer.parseInt(temp.substring(0,4))+Integer.parseInt(temp.substring(4));
+        return cur_id;
+    }
+
+
+
+
 }

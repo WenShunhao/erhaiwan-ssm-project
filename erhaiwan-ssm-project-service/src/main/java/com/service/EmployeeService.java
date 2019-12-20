@@ -1,7 +1,6 @@
 package com.service;
 
 import com.dao.EmployeeDao;
-import com.entity.EmpBackupInfo;
 import com.entity.EmployeeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,9 @@ public class EmployeeService {
     @Transactional
     public List<EmployeeInfo> getEmpAllInfo(int pageNum,int pageSize){
         return dao.getEmpAllInfo(pageNum,pageSize);
+    }
+    public List<EmployeeInfo> exportVipAllInfo(){
+        return dao.exportEmpAllInfo();
     }
 //备份操作
     @Transactional

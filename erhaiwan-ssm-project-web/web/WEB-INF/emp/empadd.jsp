@@ -128,8 +128,15 @@
 </div>
 <%--使用layui的radio、select等控件--%>
 <script>
-    layui.use(['form','layer'], function(){
+    layui.use(['form','layer','laydate'], function(){
         var form = layui.form
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#eHiredate',
+        });
+        laydate.render({
+            elem: '#eBirthday',
+        });
     layer.msg("添加操作！！");
     });
 

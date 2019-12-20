@@ -65,7 +65,6 @@ CREATE TABLE vipinfo(
     v_gender VARCHAR(4) COMMENT '性别',
     v_address VARCHAR(50) COMMENT '通讯地址',
     v_condition VARCHAR(10) COMMENT '状态',
-        foreign key(v_carplate) references carinfo(c_carplate)
 )ENGINE = InnoDB COMMENT '会员信息表';
 
 -- 会员充值表
@@ -77,7 +76,6 @@ CREATE TABLE rechargeinfo(
     o_id INT COMMENT '操作员工编号',
     r_time DATETIME COMMENT '交易时间',
     r_remark VARCHAR(50) COMMENT '交易备注',
-    FOREIGN KEY(v_card) REFERENCES vipinfo(v_card),
     FOREIGN KEY (o_id) REFERENCES operatorinfo(o_id)
 )ENGINE = InnoDB COMMENT '会员充值信息表';
 alter table rechargeinfo change r_time r_time timestamp not null default NOW();
@@ -91,3 +89,22 @@ CREATE TABLE setbilling(
     b_viptime INT COMMENT '计时/小时(会员客户)',
     b_vipfee DOUBLE COMMENT '费用(会员客户)'
 )ENGINE = InnoDB COMMENT '计费标准设置表';
+
+CREATE TABLE parkinginfo(
+    p_num INT PRIMARY KEY COMMENT '停车编号',
+    c_carplate VARCHAR(20) NOT NULL COMMENT '车牌号',
+    p_card VARCHAR(20) COMMENT '停车牌号',
+    p_picture VARCHAR(50) COMMENT '进场拍摄图',
+    p_entrytime Date COMMENT '进场时间',
+    p_leavetime Date COMMENT '出场时间',
+    p_type VARCHAR(10) COMMENT '客户类型',
+    p_cost Double COMMENT '停车费用',
+    p_payway VARCHAR(20) COMMENT '支付方式',
+    v_card VARCHAR(12) COMMENT '会员卡号',
+    v_phone VARCHAR(12) COMMENT '临时客户手机号码',
+    p_condition VARCHAR(20) DEFAULT '正在停车中' COMMENT '状态',
+    p_remark VARCHAR(50) COMMENT '备注'
+
+)ENGINE = InnoDB COMMENT '停车信息表';
+alter table parkinginfo change p_entrytime p_entrytime timestamp not null default NOW();
+

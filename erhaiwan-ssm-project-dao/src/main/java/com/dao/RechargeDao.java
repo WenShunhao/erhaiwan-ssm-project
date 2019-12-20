@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.Rechargeinfo;
+import com.entity.SetBilling;
 import org.apache.ibatis.annotations.Param;
 
 public interface RechargeDao {
@@ -12,5 +13,10 @@ public interface RechargeDao {
     void addRecharge(Rechargeinfo rechargeinfo);
     void updateMoney(@Param("vCard")String vCard,@Param("rRecharge") Double rRecharge);
 
+//    停车费用--查询数据
+    Double feedata1();
+    Double feedata2();
+//    修改停车费用
+    void updatefee(SetBilling setBilling);
 
 }
