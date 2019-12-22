@@ -77,7 +77,7 @@ public ModelAndView updateemp(SetBilling setBilling){
         rechargeinfo.setRNum("020"+random());
         System.out.println("值"+rechargeinfo);
         dao.recharge(rechargeinfo);
-        mv.setViewName("recharge");
+        mv.setViewName("redirect:/recharge");
 
         return mv;
     }

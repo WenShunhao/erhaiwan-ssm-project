@@ -50,10 +50,12 @@ public class ParkingControl {
 //多条件查询
     @RequestMapping("/selectparking")
     public ModelAndView select(@RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                               @RequestParam(value = "pageSize", required = false, defaultValue = "8") Integer pageSize, String vPhone, Date date1, Date date2, String pType) {
+                               @RequestParam(value = "pageSize", required = false, defaultValue = "8") Integer pageSize, String vPhone, String date1, String date2, String pType) {
 
         ModelAndView mv = new ModelAndView();
-        List<Parkinginfo> someinfo = service.getParkinginfo(vPhone, date1, date2, pType, pageNum, pageSize);
+        Date dates1= Date.valueOf(date1);
+        Date dates2= Date.valueOf(date2);
+        List<Parkinginfo> someinfo = service.getParkinginfo(vPhone, dates1, dates2, pType, pageNum, pageSize);
         PageInfo<Parkinginfo> pageInfo = new PageInfo<>(someinfo, 5);
         mv.addObject("pageInfo", pageInfo);
         mv.setViewName("parking/parkinglst");
@@ -187,5 +189,13 @@ public class ParkingControl {
             service.overParking(parkinginfo);
             mv.setViewName("redirect:/parkinglst");
         return mv;
+    }
+
+    @RequestMapping("/testsj")
+    public ModelAndView test(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("Income");
+        return mv;
+
     }
 }

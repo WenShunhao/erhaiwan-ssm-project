@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.sql.Date;
+
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("employeeinfo")

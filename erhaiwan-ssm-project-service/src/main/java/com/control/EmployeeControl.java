@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.util.List;
@@ -97,11 +96,14 @@ public class EmployeeControl {
 
 //多条件查询
     @RequestMapping("/selectemp")
-    public ModelAndView select(@RequestParam(value = "pageNum",required = false,defaultValue = "1")Integer pageNum,
-                               @RequestParam(value = "pageSize",required = false,defaultValue = "8")Integer pageSize, String eName, Date date1,Date date2,String eDept){
-
+    public ModelAndView select(String eName, String date1,String date2,String eDept,@RequestParam(value = "pageNum",required = false,defaultValue = "1")Integer pageNum,
+                               @RequestParam(value = "pageSize",required = false,defaultValue = "8")Integer pageSize){
+        System.out.println("嗷呜嗷呜"+eName+date1+date2+eDept);
         ModelAndView mv = new ModelAndView();
-        List<EmployeeInfo> someinfo = dao.getEmpSomeInfo(eName, date1, date2, eDept, pageNum, pageSize);
+        Date dates1= Date.valueOf(date1);
+        Date dates2= Date.valueOf(date2);
+        List<EmployeeInfo> someinfo = dao.getEmpSomeInfo(eName, dates1, dates2, eDept, pageNum, pageSize);
+
         PageInfo<EmployeeInfo> pageInfo = new PageInfo<>(someinfo,5);
         mv.addObject("pageInfo",pageInfo);
         mv.setViewName("emp/emplst");

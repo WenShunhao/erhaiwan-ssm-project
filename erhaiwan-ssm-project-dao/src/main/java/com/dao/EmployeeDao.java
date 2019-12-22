@@ -19,7 +19,7 @@ public interface EmployeeDao {
 void addEmpInfo(EmployeeInfo employeeInfo);
 
 //多条件查询数据
-    List<EmployeeInfo> getEmpSomeInfo(@Param("eName") String eName, @Param("date1") Date date1,@Param("date2") Date date2,@Param("eDept") String eDept,@Param("pageNum")int pageNum, @Param("pageSize")int pageSize);
+    List<EmployeeInfo> getEmpSomeInfo(@Param("eName") String eName, @Param("date1") Date date1, @Param("date2") Date date2, @Param("eDept") String eDept, @Param("pageNum")Integer pageNum, @Param("pageSize")Integer pageSize);
 
 //    修改数据
     void updateInfo(EmployeeInfo employeeInfo);

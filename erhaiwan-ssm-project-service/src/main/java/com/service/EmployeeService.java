@@ -5,7 +5,6 @@ import com.entity.EmployeeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.Date;
 import java.util.List;
 //声明service层
@@ -41,7 +40,7 @@ public class EmployeeService {
     }
 //    多条件查询
     @Transactional
-    public List<EmployeeInfo> getEmpSomeInfo(String eName, Date date1,Date date2,String eDept, int pageNum, int pageSize){
+    public List<EmployeeInfo> getEmpSomeInfo(String eName, Date date1, Date date2, String eDept, int pageNum, int pageSize){
         return dao.getEmpSomeInfo(eName, date1, date2, eDept, pageNum, pageSize);
     }
 }

@@ -46,7 +46,7 @@
 
 <!--    多条件查询信息:注意的地方   时间参数判断为空不能写‘’，否则就会报错500java.lang.String-->
     <select id="getEmpSomeInfo"  resultType="com.entity.EmployeeInfo">
-        select e_id, e_name, e_birthday,e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark
+        select e_id, e_name, e_birthday, e_phone, e_gender, e_idcard, e_salary, e_hiredate, e_dept, e_condition, e_address, e_remark
         from employeeinfo
         where 1=1
         <if test="eName != '' and eName != null">

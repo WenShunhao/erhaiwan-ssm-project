@@ -52,7 +52,7 @@
             </dl>
         </li>
         <li class="layui-nav-item"><a href="/recharge?username="+${username} target="iframe_a"><i class="layui-icon layui-icon-rmb" style="font-size: 25px; color: white;"></i>充值与收费标准</a></li>
-        <li class="layui-nav-item"><a href="#"><i class="layui-icon layui-icon-chart-screen" style="font-size: 25px; color: white;"></i>营业额</a></li>
+        <li class="layui-nav-item"><a href="/testsj" target="iframe_a"><i class="layui-icon layui-icon-chart-screen" style="font-size: 25px; color: white;"></i>营业额</a></li>
         <li class="layui-nav-item"><a href="#"><i class="layui-icon layui-icon-set-sm" style="font-size: 25px; color: white;"></i>系统设置</a></li>
 
     </ul>
