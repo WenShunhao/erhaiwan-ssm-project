@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.sql.Date;
-
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("employeeinfo")
@@ -21,7 +19,7 @@ public class EmployeeInfo {
     private String eName;
     @TableId("e_birthday")
     @Excel(name = "出生日期", width = 20, orderNum = "3")
-    private Date eBirthday;
+    private String eBirthday;
     @TableId("e_phone")
     @Excel(name = "联系方式", width = 20, orderNum = "4")
     private String ePhone;
@@ -36,7 +34,7 @@ public class EmployeeInfo {
     private Double eSalary;
     @TableId("e_hiredate")
     @Excel(name = "入职日期", width = 20, orderNum = "8")
-    private Date eHiredate;
+    private String eHiredate;
     @TableId("e_dept")
     @Excel(name = "职位", width = 20, orderNum = "9")
     private String eDept;
@@ -53,7 +51,7 @@ public class EmployeeInfo {
     public EmployeeInfo() {
     }
 
-    public EmployeeInfo(Integer eId, String eName, Date eBirthday, String ePhone, String eGender, String eIdcard, Double eSalary, Date eHiredate, String eDept, String eCondition, String eAddress, String eRemark) {
+    public EmployeeInfo(Integer eId, String eName, String eBirthday, String ePhone, String eGender, String eIdcard, Double eSalary, String eHiredate, String eDept, String eCondition, String eAddress, String eRemark) {
         this.eId = eId;
         this.eName = eName;
         this.eBirthday = eBirthday;
@@ -88,11 +86,11 @@ public class EmployeeInfo {
         this.eName = eName;
     }
 
-    public Date geteBirthday() {
+    public String geteBirthday() {
         return eBirthday;
     }
 
-    public void seteBirthday(Date eBirthday) {
+    public void seteBirthday(String eBirthday) {
         this.eBirthday = eBirthday;
     }
 
@@ -128,11 +126,11 @@ public class EmployeeInfo {
         this.eSalary = eSalary;
     }
 
-    public Date geteHiredate() {
+    public String geteHiredate() {
         return eHiredate;
     }
 
-    public void seteHiredate(Date eHiredate) {
+    public void seteHiredate(String eHiredate) {
         this.eHiredate = eHiredate;
     }
 

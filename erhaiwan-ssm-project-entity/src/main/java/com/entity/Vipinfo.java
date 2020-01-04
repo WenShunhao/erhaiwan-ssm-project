@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
 import java.io.Serializable;
-import java.sql.Date;
 
 
 @EqualsAndHashCode(callSuper = false)
@@ -31,7 +31,7 @@ public class Vipinfo implements Serializable {
     private String cCarplate;
     @TableId("v_birthday")
     @Excel(name = "出生日期", width = 20, orderNum = "6")
-    private Date vBirthday;
+    private String vBirthday;
     @TableId("v_gender")
     @Excel(name = "性别", width = 20, orderNum = "7")
     private String vGender;
@@ -45,7 +45,7 @@ public class Vipinfo implements Serializable {
     public Vipinfo() {
     }
 
-    public Vipinfo(String vCard, String vPassword, String vName, Double vBalance, String cCarplate, Date vBirthday, String vGender, String vAddress, String vCondition) {
+    public Vipinfo(String vCard, String vPassword, String vName, Double vBalance, String cCarplate, String vBirthday, String vGender, String vAddress, String vCondition) {
         this.vCard = vCard;
         this.vPassword = vPassword;
         this.vName = vName;
@@ -101,11 +101,11 @@ public class Vipinfo implements Serializable {
         this.cCarplate = cCarplate;
     }
 
-    public Date getvBirthday() {
+    public String getvBirthday() {
         return vBirthday;
     }
 
-    public void setvBirthday(Date vBirthday) {
+    public void setvBirthday(String vBirthday) {
         this.vBirthday = vBirthday;
     }
 

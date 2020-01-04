@@ -4,6 +4,7 @@ import com.dao.OperatorDao;
 import com.entity.OperatorInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +51,14 @@ private OperatorDao dao;
         }
         return mv;
 
+    }
+
+    @RequestMapping("/updateinfo")
+    public String test(HttpServletRequest request, Model model){
+        String  username = String.valueOf(request.getSession().getAttribute("username"));
+        System.out.println("本地账号名是实打实大所大所大="+username);
+        model.addAttribute("username",username);
+        return "accountinfo";
     }
 
 }

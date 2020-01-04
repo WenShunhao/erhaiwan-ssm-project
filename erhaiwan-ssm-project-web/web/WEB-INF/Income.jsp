@@ -17,7 +17,7 @@
             min-width: 510px;
             max-width: 900px;
         }
-        #xxx{
+        #yearbox{
             float: right;
             margin-top: -470PX;
             margin-right: 50px;
@@ -27,13 +27,24 @@
 </head>
 <body>
 <div id="container"></div>
-<div id="xxx">
-    <select>
-        <option>2019年度</option>
-        <option>2020年度</option>
-        <option>2021年度</option>
-        <option>2022年度</option>
-        <option>2022年度</option>
+
+<div id="yearbox">
+    <select id="selectyear" onchange="changeval()">
+        <option value="2019">2019年度</option>
+        <option value="2020">2020年度</option>
+        <option value="2021">2021年度</option>
+        <option value="2022">2022年度</option>
+        <option value="2023">2023年度</option>
+        <option value="2024">2024年度</option>
+        <option value="2025">2025年度</option>
+        <option value="2026">2026年度</option>
+        <option value="2027">2027年度</option>
+        <option value="2028">2028年度</option>
+        <option value="2029">2029年度</option>
+        <option value="2030">2030年度</option>
+        <option value="2031">2031年度</option>
+        <option value="2032">2032年度</option>
+        <option value="2033">2033年度</option>
     </select>
 </div>
 
@@ -66,13 +77,13 @@
         },
         series: [{
             name: '会员充值收入',
-            data: [200, 100, 50, 100, 100, 100, 300, 100, 700, 100, 100, 100]
+            data: ${redata}
         }, {
             name: '停车收入',
-            data: [100, 100, 50, 100, 100, 50, 300, 100, 50, 100, 100, 100]
+            data: ${padata}
         }, {
             name: '合计收入',
-            data: [300, 200, 100, 200, 200, 150, 600, 200, 750, 200, 200, 200]
+            data: ${totaldata}
         }],
         responsive: {
             rules: [{
@@ -105,6 +116,22 @@
             }]
         }
     });
+    alert("亲，你想干啥子？！")
+
+    function changeval() {
+        var nf=document.getElementById("selectyear");
+        var nfval = nf.options[nf.selectedIndex].value;
+    alert(nfval);
+        $.ajax({
+            url: "/totalui?toyear="+nfval,
+            type: "get",
+            success: function (data) {
+                alert("成功！！！");
+            }
+
+        })
+    };
+
 
 </script>
 </html>

@@ -109,7 +109,7 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" id="add" lay-submit   lay-filter="formDemo">点击修改</button>
-            <button type="reset" class="layui-btn layui-btn-primary" style="width: 90px;">重置</button>
+            <a href="/viplist?pageNum=1&pageSize=8" id="refresh" class="layui-btn refresh" target="iframe_a">返回</a>
         </div>
     </div>
 

@@ -191,11 +191,5 @@ public class ParkingControl {
         return mv;
     }
 
-    @RequestMapping("/testsj")
-    public ModelAndView test(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("Income");
-        return mv;
 
-    }
 }

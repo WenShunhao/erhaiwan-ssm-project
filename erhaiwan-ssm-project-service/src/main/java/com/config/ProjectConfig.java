@@ -15,8 +15,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,7 +29,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import javax.servlet.Filter;
 import javax.sql.DataSource;
+import java.nio.charset.Charset;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 @Configuration
@@ -34,7 +42,7 @@ import java.util.Properties;
 @ComponentScan({"com.service","com.control"})//扫描业务类
 @EnableTransactionManagement()
 @EnableWebMvc
-public class ProjectConfig  implements WebMvcConfigurer {
+public class ProjectConfig  implements WebMvcConfigurer{
     @Value("${usernames}")
     private String username;
     @Value("${password}")
@@ -125,15 +133,7 @@ public class ProjectConfig  implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new DateFormatter("yyyy-MM-dd HH:mm:ss"));
     }
-////    后传前 时间格式转换
-//    @Override
-//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.setDateFormat(sdf);
-//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(objectMapper);
-//        converters.add(converter);
-//    }
+
 //文件上传
     @Bean(name = "multipartResolver")
     public MultipartResolver multipartResolver(){
@@ -144,6 +144,38 @@ public class ProjectConfig  implements WebMvcConfigurer {
         resolver.setMaxInMemorySize(40960);
         return resolver;
     }
+//    等同于xml里配置
+    @Bean
+    public Filter characterEncodingFilter() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return characterEncodingFilter;
+    }
+
+
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        stringHttpMessageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON_UTF8));
+        return stringHttpMessageConverter;
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(responseBodyConverter());
+    }
+
+
+//    //    后传前 时间格式转换
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        objectMapper.setDateFormat(sdf);
+//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(objectMapper);
+//        converters.add(converter);
+//    }
 
 
 

@@ -58,9 +58,8 @@
             <i class="layui-icon layui-icon-date" style="font-size: 26px; color: skyblue;padding-top: 6px"></i>
              <input type="date" name="date2" id="date2" class="selectdate" />
                     <select style="width: 135px;height:38px;" name="eDept">
-                        <option value="">--请选择部门--</option>
-                        <option value="总裁">总裁</option>
-                        <option value="会计">会计</option>
+                        <option value="">--请选择职位--</option>
+                        <option value="Boss">Boss</option>
                         <option value="保安">保安</option>
                         <option value="经理">经理</option>
                         <option value="维护员">维护员</option>
@@ -88,7 +87,7 @@
                 <th>身份证</th>
                 <th>工资</th>
                 <th>入职日期</th>
-                <th>所属部门</th>
+                <th>职位</th>
                 <th>状态</th>
                 <th>家庭地址</th>
                 <th>备注</th>
@@ -166,7 +165,6 @@
                 alert("删除成功！！！");
                 // $("#sy").trigger("click");第一种 刷新方式  下面是第二种
                 window.location.href=window.location.href;
-
             }).fail(function () {
                 alert("删除失败！！！");
             })
@@ -200,8 +198,6 @@
             table+="</div>"
             $("#div1").append(table)
             $(".bt").on('click',function () {
-                //prop只能获取标签的固有属性
-                //attr可以获取自定义属性
                 loadUser($(this).attr("pageNum"),$(this).attr("pageSize"));
             })
         })

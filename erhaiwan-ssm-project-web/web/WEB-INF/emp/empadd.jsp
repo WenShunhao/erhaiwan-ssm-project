@@ -79,8 +79,7 @@
     <div class="layui-input-block kuangdaxiao" >
                     <select name="eDept" id="eDept" lay-verify="required" class="layui-form-select" >
                         <option value=""></option>
-                        <option value="总裁">总裁</option>
-                        <option value="会计">会计</option>
+                        <option value="Boss">Boss</option>
                         <option value="保安">保安</option>
                         <option value="经理">经理</option>
                         <option value="维护员">维护员</option>

@@ -1,16 +1,15 @@
 package com.entity;
 
-import java.sql.Date;
 public class EmpBackupInfo  {
     private Integer eId;
     private String eName;
-    private Date eBirthday;
+    private String eBirthday;
     private String ePhone;
     private String eGender;
     private String eIdcard;
     private Double eSalary;
-    private Date eHiredate;
-    private Date eLeavedate;
+    private String eHiredate;
+    private String eLeavedate;
     private String eDept;
     private String eCondition;
     private String eAddress;
@@ -19,7 +18,7 @@ public class EmpBackupInfo  {
     public EmpBackupInfo() {
     }
 
-    public EmpBackupInfo(Integer eId, String eName, Date eBirthday, String ePhone, String eGender, String eIdcard, Double eSalary, Date eHiredate, Date eLeavedate, String eDept, String eCondition, String eAddress, String eRemark) {
+    public EmpBackupInfo(Integer eId, String eName, String eBirthday, String ePhone, String eGender, String eIdcard, Double eSalary, String eHiredate, String eLeavedate, String eDept, String eCondition, String eAddress, String eRemark) {
         this.eId = eId;
         this.eName = eName;
         this.eBirthday = eBirthday;
@@ -51,11 +50,11 @@ public class EmpBackupInfo  {
         this.eName = eName;
     }
 
-    public Date geteBirthday() {
+    public String geteBirthday() {
         return eBirthday;
     }
 
-    public void seteBirthday(Date eBirthday) {
+    public void seteBirthday(String eBirthday) {
         this.eBirthday = eBirthday;
     }
 
@@ -91,19 +90,19 @@ public class EmpBackupInfo  {
         this.eSalary = eSalary;
     }
 
-    public Date geteHiredate() {
+    public String geteHiredate() {
         return eHiredate;
     }
 
-    public void seteHiredate(Date eHiredate) {
+    public void seteHiredate(String eHiredate) {
         this.eHiredate = eHiredate;
     }
 
-    public Date geteLeavedate() {
+    public String geteLeavedate() {
         return eLeavedate;
     }
 
-    public void seteLeavedate(Date eLeavedate) {
+    public void seteLeavedate(String eLeavedate) {
         this.eLeavedate = eLeavedate;
     }
 

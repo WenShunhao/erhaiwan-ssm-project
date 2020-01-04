@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TotalDao">
+
+<!--    统计充值-->
+    <select id="getRechargeTotal" parameterType="String" resultType="java.util.LinkedHashMap">
+        select
+            sum(case month(r_time) when '1'  then r_recharge else 0 end) as Jan,
+            sum(case month(r_time) when '2'  then r_recharge else 0 end) as Feb,
+            sum(case month(r_time) when '3'  then r_recharge else 0 end) as Mar,
+            sum(case month(r_time) when '4'  then r_recharge else 0 end) as Apr,
+            sum(case month(r_time) when '5'  then r_recharge else 0 end) as May,
+            sum(case month(r_time) when '6'  then r_recharge else 0 end) as June,
+            sum(case month(r_time) when '7'  then r_recharge else 0 end) as July,
+            sum(case month(r_time) when '8'  then r_recharge else 0 end) as Aug,
+            sum(case month(r_time) when '9'  then r_recharge else 0 end) as Sept,
+            sum(case month(r_time) when '10' then r_recharge  else 0 end) as Oct,
+            sum(case month(r_time) when '11' then r_recharge  else 0 end) as Nov,
+            sum(case month(r_time) when '12' then r_recharge  else 0 end) as Dece
+        from rechargeinfo
+        where year(r_time)=#{toyear};
+    </select>
+
+<!--统计停车-->
+    <select id="getParkingTotal" parameterType="String" resultType="java.util.LinkedHashMap">
+        select
+            sum(case month(p_leavetime) when '1'  then p_cost else 0 end) as Jan,
+            sum(case month(p_leavetime) when '2'  then p_cost else 0 end) as Feb,
+            sum(case month(p_leavetime) when '3'  then p_cost else 0 end) as Mar,
+            sum(case month(p_leavetime) when '4'  then p_cost else 0 end) as Apr,
+            sum(case month(p_leavetime) when '5'  then p_cost else 0 end) as May,
+            sum(case month(p_leavetime) when '6'  then p_cost else 0 end) as June,
+            sum(case month(p_leavetime) when '7'  then p_cost else 0 end) as July,
+            sum(case month(p_leavetime) when '8'  then p_cost else 0 end) as Aug,
+            sum(case month(p_leavetime) when '9'  then p_cost else 0 end) as Sept,
+            sum(case month(p_leavetime) when '10' then p_cost  else 0 end) as Oct,
+            sum(case month(p_leavetime) when '11' then p_cost  else 0 end) as Nov,
+            sum(case month(p_leavetime) when '12' then p_cost  else 0 end) as Dece
+        from parkinginfo
+        where year(p_leavetime)=#{toyear} and p_condition='交易完成' ;
+    </select>
+
+</mapper>

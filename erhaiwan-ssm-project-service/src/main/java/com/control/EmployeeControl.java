@@ -24,6 +24,7 @@ public class EmployeeControl {
     private EmployeeDao dao;
     @Autowired
     private EmployeeService service;
+
 //        转换时间格式
     @InitBinder
     public void xxxx(WebDataBinder dataBinder) {
@@ -100,13 +101,15 @@ public class EmployeeControl {
                                @RequestParam(value = "pageSize",required = false,defaultValue = "8")Integer pageSize){
         System.out.println("嗷呜嗷呜"+eName+date1+date2+eDept);
         ModelAndView mv = new ModelAndView();
-        Date dates1= Date.valueOf(date1);
-        Date dates2= Date.valueOf(date2);
-        List<EmployeeInfo> someinfo = dao.getEmpSomeInfo(eName, dates1, dates2, eDept, pageNum, pageSize);
+        if (date1 !=null || date2 != null) {
+            Date dates1 = Date.valueOf(date1);
+            Date dates2 = Date.valueOf(date2);
+            List<EmployeeInfo> someinfo = dao.getEmpSomeInfo(eName, dates1, dates2, eDept, pageNum, pageSize);
 
-        PageInfo<EmployeeInfo> pageInfo = new PageInfo<>(someinfo,5);
-        mv.addObject("pageInfo",pageInfo);
-        mv.setViewName("emp/emplst");
+            PageInfo<EmployeeInfo> pageInfo = new PageInfo<>(someinfo, 5);
+            mv.addObject("pageInfo", pageInfo);
+            mv.setViewName("emp/emplst");
+        }
         return mv;
     }
 
