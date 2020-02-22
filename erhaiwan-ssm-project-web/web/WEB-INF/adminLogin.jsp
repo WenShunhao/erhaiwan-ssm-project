@@ -44,13 +44,13 @@
         <span data-placeholder="Please Enter Administrator ID"></span>
     </div>
     <div class="ib">
-        <input  id="oPassword" name="oPassword" type="password" value="123456" onclick="dispare()"/>
+        <input  id="oPassword" name="oPassword" type="password" value="" onclick="dispare()"/>
         <span data-placeholder="Please Enter Your Password"></span>
     </div>
     <!--这里加一个隐藏域-->
     <input type="hidden" name="back_url" value="">
 
-    <input type="submit" value="登陆" id="loginbtn">
+    <input type="submit" value="登录" id="loginbtn">
     <div id="tishi">
         <span style="color: red">${error}<br>${oAccountError}<br>${oPasswordError}</span>
     </div>
@@ -64,7 +64,6 @@
 </script>
 
 <script>
-
     window.onload = function (ev) {
         var nodeListOf = document.querySelectorAll("input");
         nodeListOf.forEach(function (o) {
@@ -78,11 +77,6 @@
             }
         });
     };
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
-<script type="text/javascript">
-    L2Dwidget.init();
 </script>
 </body>
 </html>

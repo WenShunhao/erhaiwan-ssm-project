@@ -73,7 +73,6 @@
                                 <option value=""></option>
                                 <option value="微信支付">微信支付</option>
                                 <option value="支付宝">支付宝支付</option>
-                                <option value="银行卡支付">银行卡支付</option>
                             </select>
                         </div></td>
                 </tr>

@@ -119,7 +119,7 @@
                     <td>${parking.PNum}</td>
                     <td>${parking.CCarplate}</td>
                     <td>${parking.PCard}</td>
-                    <td><img src="http://localhost:88/${parking.PPicture}"style="width: 65px;height: 65px"></td>
+                    <td><img src="http://localhost:88/${parking.PPicture}"style="width: 250px;height: 70px"></td>
                     <td>${parking.PEntrytime}</td>
                     <td>${parking.PType}</td>
                     <td>${parking.VCard}</td>
@@ -154,7 +154,7 @@
 <!--会员用户停车登记-->
 <div id="light2" class="white_content" style="height: 450px;width: 480px">
     <form class="layui-form" enctype="multipart/form-data"  method="post" action="/addvipparking">
-        <h4 align="center" style="margin-top: 20px;">----------会员客户<${info.vName}>信息----------</h4>
+        <h4 align="center" style="margin-top: 20px;">----------会员客户信息----------</h4>
         <br />
         <table   style=" width: 100%;height: 250px;" class="layui-table">
             <tr>
@@ -169,7 +169,7 @@
             </tr>
             <tr>
                 <td>停车牌号：</td>
-                <td><input type="text" name="pCard" value="" class="lsdata"  /></td>
+                <td><input type="text" name="pCard" value="B-0002" class="lsdata"  /></td>
             </tr>
             <tr>
                 <td>抓拍照片</td>
@@ -215,7 +215,7 @@
         <tr>
             <td>车牌号：</td>
             <td >
-                <input type="text"  name="cCarplate" value="" class="lsdata" maxlength="7"/>
+                <input type="text"  name="cCarplate" value="B-0009" class="lsdata" maxlength="7"/>
             </td>
         </tr>
         <tr>

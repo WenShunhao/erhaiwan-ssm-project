@@ -95,8 +95,8 @@
                 <div class="layui-input-block kuangdaxiao" >
                     <select name="eCondition" id="eCondition" lay-verify="required" class="layui-form-select">
                         <option value=""></option>
-                        <option value="正式员工">正式员工</option>
-                        <option value="实习生">实习生</option>
+                        <option value="在职">正式员工</option>
+                        <option value="离职">离职</option>
                     </select>
                 </div>
 

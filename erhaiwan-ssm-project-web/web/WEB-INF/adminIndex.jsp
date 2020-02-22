@@ -30,7 +30,7 @@
             <dl class="layui-nav-child">
                 <dd><a href="/viplist" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 22px; color: white;"></i>详细信息查询</a></dd>
                 <dd><a href="/addvipui" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-add-1" style="font-size: 22px; color: white;"></i>添加会员</a></dd>
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 22px; color: white;"></i>注销申请</a></dd>
+<%--                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-delete" style="font-size: 22px; color: white;"></i>注销申请</a></dd>--%>
             </dl>
         </li>
         <li class="layui-nav-item ">
@@ -46,13 +46,13 @@
             <a href="javascript:;"><i class="layui-icon layui-icon-release" style="font-size: 25px; color: white;"></i>停车场管理中心</a>
             <dl class="layui-nav-child">
                 <dd><a href="/parkinglst" target="iframe_a">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-search" style="font-size: 22px; color: white;"></i>查看停车情况</a></dd>
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-about" style="font-size: 22px; color: white;"></i>停车位情况</a></dd>
-                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-template-1" style="font-size: 22px; color: white;"></i>停车位操作</a></dd>
+<%--                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-about" style="font-size: 22px; color: white;"></i>停车位情况</a></dd>--%>
+<%--                <dd><a href="javascript:;">&nbsp;&nbsp;&nbsp;<i class="layui-icon layui-icon-template-1" style="font-size: 22px; color: white;"></i>停车位操作</a></dd>--%>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="/recharge?username="+${username} target="iframe_a"><i class="layui-icon layui-icon-rmb" style="font-size: 25px; color: white;"></i>充值与收费标准</a></li>
         <li class="layui-nav-item"><a href="/totalui" target="iframe_a"><i class="layui-icon layui-icon-chart-screen" style="font-size: 25px; color: white;"></i>营业额</a></li>
-        <li class="layui-nav-item"><a href="/dasd" target="iframe_a"><i class="layui-icon layui-icon-set-sm" style="font-size: 25px; color: white;"></i>系统设置</a></li>
+
 
     </ul>
 
@@ -62,12 +62,8 @@
             <div id="topdaohang" >
                 <ul class="layui-nav" >
                 <div id="topcontext" >
-
-                    <li class="layui-nav-item" >
-                        <a href="/accountinfo?username=${username}" target="iframe_a">个人中心<span class="layui-badge-dot"></span></a>
-                    </li>
                     <li class="layui-nav-item" lay-unselect="" >
-                        <a href="javascript:;"><img src="http://localhost:88/3.png" class="layui-nav-img">${username}</a>
+                        <a href="javascript:;"><img src="http://localhost:88/3.jpg" class="layui-nav-img">${username}</a>
                         <dl class="layui-nav-child">
                             <dd><a href="/updateinfo?username=${username}"  target="iframe_a"><span id="updatepwd2">修改密码</span></a></dd>
                             <dd><a  id="zhuxiao" ><span id="zhuxiaoanniu">注销登录</span></a></dd>

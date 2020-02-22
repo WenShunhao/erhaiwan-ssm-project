@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: NFS
-  Date: 2019-12-26
-  Time: 11:01
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,11 +9,11 @@
 </head>
 <body>
 <!--修改页面-->
-<div id="light" class="white_content" style="height: 340px">
+
     <a href="/parkinglst" target="iframe_a"><i class="layui-icon layui-icon-close" title="关闭" style="font-size: 30px; color: black;float: right;cursor: pointer"></i></a>
     <br>
     <h2 align="center" style="margin-top: 20px;">-----------------修改${username}的密码-----------------</h2>
-    <form action="/sureupdateinfo?username=${username}" method="post" >
+    <form action="/sureupdateinfo?username=${username}" method="post" style="margin-left: 400px">
 
         <br>
         <label class="layui-form-label ziti">新密码：</label>
@@ -38,23 +32,23 @@
         <button type="submit"  class="layui-btn" lay-submit   lay-filter="formDemo" style="height: 45px;width: 200px;margin-left: 110px;" >确定</button>
     </form>
 </div>
-</div>
+
 <%--<div id="fade" class="black_overlay"></div>--%>
 
-<script>
-    layui.use(['form','layer'], function(){
-        var form = layui.form
-    });
+<%--<script>--%>
+<%--    layui.use(['form','layer'], function(){--%>
+<%--        var form = layui.form--%>
+<%--    });--%>
 
-    document.getElementById('fade').style.display='block'
-    document.getElementById('light').style.display='block'
-        // $("#oPassword2").blur(function () {
-        //     if ($("#oPassword").val() != $("#oPassword2").val()) {
-        //         $("#msg").html("密码不一致，请重新输入！");
-        //         document.getElementById("oPassword2").value = "";
-        //     }
-        // })
-</script>
+<%--    document.getElementById('fade').style.display='block'--%>
+<%--    document.getElementById('light').style.display='block'--%>
+<%--        // $("#oPassword2").blur(function () {--%>
+<%--        //     if ($("#oPassword").val() != $("#oPassword2").val()) {--%>
+<%--        //         $("#msg").html("密码不一致，请重新输入！");--%>
+<%--        //         document.getElementById("oPassword2").value = "";--%>
+<%--        //     }--%>
+<%--        // })--%>
+<%--</script>--%>
 </body>
 
 </html>

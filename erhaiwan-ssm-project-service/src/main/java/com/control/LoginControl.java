@@ -19,6 +19,7 @@ import java.util.List;
 public class LoginControl {
 @Autowired
 private OperatorDao dao;
+
     @RequestMapping("/")
     public ModelAndView index(){
         ModelAndView mav = new ModelAndView();
@@ -56,7 +57,7 @@ private OperatorDao dao;
     @RequestMapping("/updateinfo")
     public String test(HttpServletRequest request, Model model){
         String  username = String.valueOf(request.getSession().getAttribute("username"));
-        System.out.println("本地账号名是实打实大所大所大="+username);
+        System.out.println("本地账号名"+username);
         model.addAttribute("username",username);
         return "accountinfo";
     }

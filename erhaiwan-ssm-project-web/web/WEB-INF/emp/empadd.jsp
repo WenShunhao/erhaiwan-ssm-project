@@ -48,7 +48,7 @@
             <label class="layui-form-label"><i class="layui-icon layui-icon-male" style="font-size: 30px; color: skyblue;"></i></label>
             <div class="layui-input-block kuangdaxiao" >
              <select name="eGender" id="eGender" lay-verify="required" class="layui-form-select">
-                 <option value=""></option>
+                 <option value="男">男</option>
                  <option value="男">男</option>
                  <option value="女">女</option>
 
@@ -78,7 +78,7 @@
                 <label class="layui-form-label"><i class="layui-icon layui-icon-group" style="font-size: 30px; color: skyblue;"></i></label>
     <div class="layui-input-block kuangdaxiao" >
                     <select name="eDept" id="eDept" lay-verify="required" class="layui-form-select" >
-                        <option value=""></option>
+                        <option value="保安">保安</option>
                         <option value="Boss">Boss</option>
                         <option value="保安">保安</option>
                         <option value="经理">经理</option>
@@ -93,9 +93,9 @@
                 <label class="layui-form-label"><i class="layui-icon layui-icon-note" style="font-size: 30px; color: skyblue;"></i></label>
                 <div class="layui-input-block kuangdaxiao" >
                     <select name="eCondition" id="eCondition" lay-verify="required" class="layui-form-select">
-                        <option value=""></option>
-                        <option value="正式员工">正式员工</option>
-                        <option value="实习生">实习生</option>
+                        <option value="在职">正式员工</option>
+                        <option value="在职">正式员工</option>
+                        <option value="兼职生">兼职生</option>
                     </select>
                 </div>
 
