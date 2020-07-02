@@ -30,7 +30,7 @@
         <jstl.version>1.2</jstl.version>
         <dbutils.version>1.7</dbutils.version>
         <log4j.version>1.2.17</log4j.version>
-        <mysql.version>5.1.47</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <servlet.version>3.1.0</servlet.version>
         <aspectj.version>1.9.4</aspectj.version>
         <jackson-databind.version>2.10.1</jackson-databind.version>
