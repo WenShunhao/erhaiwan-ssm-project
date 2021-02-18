@@ -33,7 +33,7 @@
         <mysql.version>5.1.47</mysql.version>
         <servlet.version>3.1.0</servlet.version>
         <aspectj.version>1.9.4</aspectj.version>
-        <jackson-databind.version>2.10.1</jackson-databind.version>
+        <jackson-databind.version>2.10.5.1</jackson-databind.version>
     </properties>
 
 
